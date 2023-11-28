@@ -14,7 +14,7 @@ import riscv_pkg::*;
 module B_type(
     input logic [31:0] instr,
 	input logic [31:0] iaddr,
-	input signed logic [31:0] imm,  rs1, rs2,
+	input logic signed [31:0] imm,  rs1, rs2,
     output logic [31:0] pc
 );
     import riscv_pkg::*;
@@ -24,16 +24,16 @@ module B_type(
 
 	assign u_rs1 = unsigned'(rs1);
 	assign u_rs2 = unsigned'(rs2);
-    assign branch = branch_instr'(instr[14:12])
+    assign branch = branch_instr'(instr[14:12]);
 
     always_comb begin
 		unique case(branch)
-            BEQ:  out = (in1 == in2)     ? (iaddr+imm) : (iaddr+4);
-            BNE:  out = (in1 != in2)     ? (iaddr+imm) : (iaddr+4);
-            BLT:  out = (in1 < in2)      ? (iaddr+imm) : (iaddr+4);
-            BGE:  out = (in1 >= in2)     ? (iaddr+imm) : (iaddr+4);
-            BGEU: out = (u_rs1 < u_rs2)  ? (iaddr+imm) : (iaddr+4);
-            BLTU: out = (u_rs1 >= u_rs2) ? (iaddr+imm) : (iaddr+4);
+            BEQ:  pc = (rs1 == rs2)     ? (iaddr+imm) : (iaddr+4);
+            BNE:  pc = (rs1 != rs2)     ? (iaddr+imm) : (iaddr+4);
+            BLT:  pc = (rs1 < rs2)      ? (iaddr+imm) : (iaddr+4);
+            BGE:  pc = (rs1 >= rs2)     ? (iaddr+imm) : (iaddr+4);
+            BGEU: pc = (u_rs1 < u_rs2)  ? (iaddr+imm) : (iaddr+4);
+            BLTU: pc = (u_rs1 >= u_rs2) ? (iaddr+imm) : (iaddr+4);
 		endcase
 	 end
 endmodule
