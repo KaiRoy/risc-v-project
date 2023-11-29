@@ -46,4 +46,4 @@ module mux_3(input logic [2:0] s, input logic [31:0] i0,i1,i2,i3,i4,i5,i6,i7, ou
 
 assign y = s[2] ? (s[1] ? (s[0] ? i7 : i6) : (s[0] ? i5 : i4 )) : (s[1] ? (s[0] ? i3 : i2) : (s[0] ? i1 : i0));
 
-endmodule : mux3
+endmodule : mux_3
