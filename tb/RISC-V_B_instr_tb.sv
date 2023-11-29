@@ -9,26 +9,32 @@
 import riscv_pkg::*;
 
 module tb();
+    // Interface
+    Instr_IO bus ();
+
     // Inputs
-    logic [31:0] idata;
+    reg [31:0] idata;
     logic [31:0] iaddr;
     logic signed [31:0] imm, rv1, rv2;
 
     // Outputs
     logic [31:0] iaddr_val;
 
+    // Aliases
+    assign bus.idata = idata;
+    assign bus.iaddr = iaddr;
+    assign bus.imm = imm;
+    assign bus.rv1 = rv1;
+    assign bus.rv2 = rv2;
+
+    assign iaddr_val = bus.iaddr_val;
+
     // Variables
     branch_instr branch;
     assign branch = branch_instr'(idata[14:12]);
 
     // Instantiate the module
-    B_type iDUT (
-        .instr(idata),
-        .rs1(rv1),
-        .rs2(rv2),
-        .pc(iaddr_val),
-        .*
-    );
+    B_type iDUT (bus);
 
     // Display System
     function void display_state;
