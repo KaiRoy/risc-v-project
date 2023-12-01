@@ -2,16 +2,12 @@
 import Ins_def::*;
 
 module CPU (Instr_IO_cpu_sig instruction);
-
-	initial begin
-		pc = 0;
-	end
-
-
     always_ff@(posedge instruction.clk)
     begin
-        if(instruction.reset)       //Other functions for reset ????
+        if(instruction.reset) begin       //Other functions for reset ????
             instruction.iaddr <= 0;
+			instruction.pc <= 0;
+		end
         else
             instruction.iaddr <= instruction.pc;
     end 
