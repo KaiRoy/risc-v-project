@@ -6,14 +6,13 @@ logic [31:0] iaddr;
 logic [31:0]  pc;     
 logic [31:0] x31;
 
-Instr_IO_cpu_sig tb_connections(); //clk,reset,iaddr,pc,x31
+Instr_IO_cpu_sig tb_connections(.*); //clk,reset,iaddr,pc,x31
 
 CPU ins (tb_connections);
 //clk=tb_connections.clk;
 
 initial begin 
-clk=tb_connections.clk;
-clk=0;
+	clk=0;
 end
 
 

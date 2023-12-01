@@ -3,6 +3,11 @@ import Ins_def::*;
 
 module CPU (Instr_IO_cpu_sig instruction);
 
+	initial begin
+		pc = 0;
+	end
+
+
     always_ff@(posedge instruction.clk)
     begin
         if(instruction.reset)       //Other functions for reset ????
