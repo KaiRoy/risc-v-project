@@ -37,7 +37,6 @@ module B_type(
     assign branch = branch_instr'(instr);
 
     always_comb begin
-	    
 		unique case(branch)
             BEQ:  pc = (rs1 == rs2)     ? (iaddr+imm) : (iaddr+4);
             BNE:  pc = (rs1 != rs2)     ? (iaddr+imm) : (iaddr+4);

@@ -29,7 +29,7 @@ module regfile(Instr_IO_cpu_sig reg_if);
 	assign reg_if.x31=x31;
 
 	//inputs
-	assign clk=regfile.clk;
+	assign clk=reg_if.clk;
 	assign rs1=reg_if.rs1;
 	assign rs2=reg_if.rs2;
 	assign rd=reg_if.rd;
@@ -44,12 +44,15 @@ module regfile(Instr_IO_cpu_sig reg_if);
         for(i=0; i<31; i = i+1)
             r[i]=i;
     end
+
+
     assign rv1 = r[rs1];
     assign rv2 = r[rs2];
-	 assign x31 = r[31];
+	assign x31 = r[31];
+
     always@(posedge clk) 
     begin
-        if(wer && rd!=0)
+        if(wer && (rd != 0))
             r[rd] = regdata;
     end
 endmodule

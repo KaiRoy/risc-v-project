@@ -19,14 +19,42 @@ end
 always #5 clk = ~clk;
 
 initial begin
-	$monitor($time, "\tx31: %d\tiaddr: %d\tpc: %d\tidata: %b", ins.x31, ins.iaddr, ins.pc, ins.instruction.idata);
+	$monitor($time, "\tx31: %d\tiaddr: %d\tpc: %d\tinstr: %b", ins.x31, ins.iaddr, ins.pc, ins.instruction.idata);
 	reset=1; #12;
 	reset=0;
-	#55
-	$display($time, "\tiaddr: %d\tclk: %d\tcpu_clk: %d\tcpu_reset: %d", ins.iaddr, clk, ins.clk, ins.reset);
-
 	#1000;
+	display_regfile();
+	display_dmem();
 	$finish;
 end
+
+function void display_instr();
+	$display("Oder of Instructions:");
+	$display("ADD");
+	$display("ADDI");
+	$display("LW");
+	$display("SW");
+	$display("BEQ");
+endfunction
+
+function void display_dmem();
+	$display("\nContents of Data Memory:");
+	for (int i = 0; i < 128; i+=4) begin
+		$display("Addr: %d\tData: %b", i, {ins.d1_ins.m[i+3], ins.d1_ins.m[i+2], ins.d1_ins.m[i+1], ins.d1_ins.m[i]});
+	end
+endfunction
+
+function void display_imem();
+	$display("\nContents of Register File:");
+	for (int i = 0; i < 32; i++) begin
+		$display("Addr: %d\tData: %b", i, ins.im2_ins.i_arr[i]);
+	end
+endfunction
+
+function void display_regfile();
+	for (int i = 0; i < 32; i++) begin
+		$display("Addr: %d\tData: %d", i, ins.r1.r[i]);
+	end
+endfunction
 
 endmodule 

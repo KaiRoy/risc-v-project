@@ -21,9 +21,12 @@ module R_type(Instr_IO_cpu_sig.R_type_io_ports bus_r);
 	logic signed [31:0] in1,in2;
 	logic [31:0] out;
 	
+	//input
 	assign instr=bus_r.idata;
 	assign in1=bus_r.rv1;
 	assign in2=bus_r.rv2;
+
+	//output
 	assign bus_r.regdata_R=out;
 	//assign out=in1+in2;
 	

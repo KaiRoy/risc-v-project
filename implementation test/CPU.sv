@@ -12,13 +12,17 @@ module CPU (
 );
 	Instr_IO_cpu_sig instruction(.*);
 
+
+	
+
+
+
 	always_ff @(posedge clk, posedge reset) begin
         if (reset)       //Other functions for reset ????
             instruction.iaddr <= 0;
         else
             instruction.iaddr <= instruction.pc;
     end 
-
 
 
     always_comb     
