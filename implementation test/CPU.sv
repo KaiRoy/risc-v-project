@@ -1,12 +1,15 @@
-`timescale 1ns / 1ps
+// `timescale 1ns / 1ps
+`timescale 1ns / 1ns
 import Ins_def::*;
+import riscv_pkg::*;
 
 module CPU (Instr_IO_cpu_sig instruction);
-    always_ff@(posedge instruction.clk)
+
+
+	always_ff@(posedge instruction.clk, posedge instruction.reset)
     begin
         if(instruction.reset) begin       //Other functions for reset ????
             instruction.iaddr <= 0;
-			instruction.pc <= 0;
 		end
         else
             instruction.iaddr <= instruction.pc;
@@ -16,8 +19,8 @@ module CPU (Instr_IO_cpu_sig instruction);
 
     always_comb     
     begin
-        case(instruction.idata[6:0])
-            R_type:      //R type instructions
+        case(op_type'(instruction.idata[6:0]))
+            RTYPE:      //R type instructions
             begin
                 instruction.rd = instruction.idata[11:7];
                 instruction.rs1 = instruction.idata[19:15];
@@ -27,7 +30,7 @@ module CPU (Instr_IO_cpu_sig instruction);
                 instruction.regdata = instruction.regdata_R;
 				instruction.pc = instruction.iaddr+4;
             end
-            I_type:     //I type instructions
+            ITYPE:     //I type instructions
             begin
                 instruction.rd = instruction.idata[11:7];
                 instruction.rs1 = instruction.idata[19:15]; 
@@ -37,7 +40,7 @@ module CPU (Instr_IO_cpu_sig instruction);
                 instruction.regdata = instruction.regdata_I;
 					 instruction.pc = instruction.iaddr+4;
             end
-            L_type:     //L type instructions
+            LTYPE:     //L type instructions
             begin
                 instruction.rd = instruction.idata[11:7];
                 instruction.rs1 = instruction.idata[19:15]; 
@@ -48,7 +51,7 @@ module CPU (Instr_IO_cpu_sig instruction);
                 instruction.regdata = instruction.regdata_L;
 				instruction.pc = instruction.iaddr+4;
             end
-            S_type:     //S type instructions
+            STYPE:     //S type instructions
             begin
                 instruction.rs1 = instruction.idata[19:15];
                 instruction.rs2 = instruction.idata[24:20];
@@ -63,53 +66,53 @@ module CPU (Instr_IO_cpu_sig instruction);
                 instruction.we = instruction.we_S;
 					 instruction.pc = instruction.iaddr+4;
             end
-				B_type:		//B type instructions
-				begin
-					instruction.rs1 = instruction.idata[19:15];
-					instruction.rs2 = instruction.idata[24:20];
-					instruction.imm = {{20{instruction.idata[31]}},instruction.idata[31],instruction.idata[7],instruction.idata[30:25],instruction.idata[11:8],1'b0};
-					instruction.wer=0;
-					instruction.we=4'b0;
-					instruction.pc = instruction.iaddr_val;
-				end
-				JALR_ins:		//JALR instruction
-				begin
-					instruction.rs1 = instruction.idata[19:15];
-					instruction.rd = instruction.idata[11:7];
-					instruction.imm = {{20{instruction.idata[31]}},instruction.idata[31:20]};
-					instruction.wer = 1;
-					instruction.we = 4'b0;
-					instruction.regdata = instruction.iaddr+4;
-					instruction.pc = (instruction.rv1+instruction.imm)&32'hfffffffe;
-				end
-				JAL_ins:		//JAL instruction
-				begin
-					instruction.rd = instruction.idata[11:7];
-					instruction.imm = {{11{instruction.idata[31]}},instruction.idata[31],instruction.idata[19:12],instruction.idata[20],instruction.idata[30:21],1'b0};
-					instruction.pc = (instruction.iaddr+instruction.imm);
-					instruction.wer = 1;
-					instruction.we = 4'b0;
-					instruction.regdata = instruction.iaddr+4;
-				end
-				AUIPC_ins:		//AUIPC
-				begin
-					instruction.rd = instruction.idata[11:7];
-					instruction.imm = {instruction.idata[31:12],12'b0};
-					instruction.wer = 1;
-					instruction.we = 4'b0;
-					instruction.regdata = instruction.iaddr+instruction.imm;
-					instruction.pc = instruction.iaddr+4;
-				end
-				LUI_ins:		//LUI
-				begin
-					instruction.rd = instruction.idata[11:7];
-					instruction.imm = {instruction.idata[31:12],12'b0};
-					instruction.wer=1;
-					instruction.we=4'b0;
-					instruction.regdata = instruction.imm;
-					instruction.pc = instruction.iaddr+4;
-				end
-			endcase
+			BTYPE:		//B type instructions
+			begin
+				instruction.rs1 = instruction.idata[19:15];
+				instruction.rs2 = instruction.idata[24:20];
+				instruction.imm = {{20{instruction.idata[31]}},instruction.idata[31],instruction.idata[7],instruction.idata[30:25],instruction.idata[11:8],1'b0};
+				instruction.wer=0;
+				instruction.we=4'b0;
+				instruction.pc = instruction.iaddr_val;
+			end
+			JALR:		//JALR instruction
+			begin
+				instruction.rs1 = instruction.idata[19:15];
+				instruction.rd = instruction.idata[11:7];
+				instruction.imm = {{20{instruction.idata[31]}},instruction.idata[31:20]};
+				instruction.wer = 1;
+				instruction.we = 4'b0;
+				instruction.regdata = instruction.iaddr+4;
+				instruction.pc = (instruction.rv1+instruction.imm)&32'hfffffffe;
+			end
+			JAL:		//JAL instruction
+			begin
+				instruction.rd = instruction.idata[11:7];
+				instruction.imm = {{11{instruction.idata[31]}},instruction.idata[31],instruction.idata[19:12],instruction.idata[20],instruction.idata[30:21],1'b0};
+				instruction.pc = (instruction.iaddr+instruction.imm);
+				instruction.wer = 1;
+				instruction.we = 4'b0;
+				instruction.regdata = instruction.iaddr+4;
+			end
+			AUIPC:		//AUIPC
+			begin
+				instruction.rd = instruction.idata[11:7];
+				instruction.imm = {instruction.idata[31:12],12'b0};
+				instruction.wer = 1;
+				instruction.we = 4'b0;
+				instruction.regdata = instruction.iaddr+instruction.imm;
+				instruction.pc = instruction.iaddr+4;
+			end
+			LUI:		//LUI
+			begin
+				instruction.rd = instruction.idata[11:7];
+				instruction.imm = {instruction.idata[31:12],12'b0};
+				instruction.wer=1;
+				instruction.we=4'b0;
+				instruction.regdata = instruction.imm;
+				instruction.pc = instruction.iaddr+4;
+			end
+		endcase
     end
 
 

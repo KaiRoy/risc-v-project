@@ -6,7 +6,8 @@
 ** Description: This file handles the B Type instructions
 ** of a RISC-V Single Cycle Processor. (WIP)
 ****************************************************/
-`timescale 1ns / 1ps
+// `timescale 1ns / 1ps
+`timescale 1ns / 1ns
 import riscv_pkg::*;
 
 //Module for branch instructions
@@ -44,6 +45,7 @@ module B_type(
             BGE:  pc = (rs1 >= rs2)     ? (iaddr+imm) : (iaddr+4);
             BGEU: pc = (u_rs1 < u_rs2)  ? (iaddr+imm) : (iaddr+4);
             BLTU: pc = (u_rs1 >= u_rs2) ? (iaddr+imm) : (iaddr+4);
+			default: ;
 		endcase
 	 end
 endmodule

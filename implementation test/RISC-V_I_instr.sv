@@ -9,7 +9,8 @@
 
 
 
-`timescale 1ns / 1ps
+// `timescale 1ns / 1ps
+`timescale 1ns / 1ns
 
 module I_type(Instr_IO_cpu_sig.I_type_io_ports bus_i);
 

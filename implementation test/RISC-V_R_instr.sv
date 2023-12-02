@@ -6,7 +6,8 @@
 ** Description: This file handles the R Type instructions
 ** of a RISC-V Single Cycle Processor. (WIP)
 ****************************************************/
-`timescale 1ns / 1ps
+// `timescale 1ns / 1ps
+`timescale 1ns / 1ns
 
 import riscv_pkg::*;
 
@@ -42,6 +43,7 @@ module R_type(Instr_IO_cpu_sig.R_type_io_ports bus_r);
         else if ({instr[30],instr[14:12]}==rs7)  out = in1>>>in2[4:0];   //sra
         else if ({instr[30],instr[14:12]}==rs8)  out = in1|in2;          //or
         else if ({instr[30],instr[14:12]}==rs9)  out = in1&in2;          //and
+		else ;
         
     end
 endmodule : R_type
