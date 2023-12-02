@@ -1,0 +1,12 @@
+../rtl/RISC-V_package.sv
+../rtl/CPU_interface.sv
+../rtl/RISC-V_R_instr.sv
+../rtl/RISC-V_I_instr.sv
+../rtl/RISC-V_L_instr.sv
+../rtl/RISC-V_S_instr.sv
+../rtl/RISC-V_B_instr.sv
+../rtl/imem.sv
+../rtl/dmem.sv
+../rtl/regfile.sv
+../rtl/CPU.sv
+../rtl/tb_cpu.sv
