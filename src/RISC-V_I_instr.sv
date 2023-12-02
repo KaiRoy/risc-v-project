@@ -1,4 +1,3 @@
-
 /****************************************************
 ** RISC-V_I_instr.sv
 ** Author: Sri Sai Sumanth,
@@ -10,22 +9,33 @@
 
 
 
+// `timescale 1ns / 1ps
+`timescale 1ns / 1ns
+
+module I_type(Instr_IO_cpu_sig.I_type_io_ports bus_i);
 
 
-module I_type(
-    input logic [31:0] instr,
-    input signed [31:0] in1,
-    input signed [31:0] imm,
-    output logic  [31:0] out
-);
+	logic [31:0] out0,out1,out2,out3,out4,out5,out6,out7;
+	logic [2:0] sel;
     logic [31:0] tmp1;
     logic [11:0] tmp2;
 	
-	logic [31:0] out0,out1,out2,out3,out4,out5,out6,out7;
-	logic [2:0] sel;
-    assign tmp1 = in1;
-    assign tmp2 = imm;
-	assign sel= instr[14:12];
+	wire  [31:0] instr;
+	wire signed [31:0] in1;
+	logic signed [31:0] imm;
+	wire [31:0] out;
+	
+	assign instr=bus_i.idata;
+	assign in1=bus_i.rv1;
+	assign imm=bus_i.imm;
+	assign bus_i.regdata_I=out;
+	
+	
+    assign tmp1 = unsigned'(in1);
+    assign tmp2 = unsigned'(imm);
+	assign sel= instr[14:12]; // selection for mux
+
+
 
 assign out0=in1+imm; //addi
 assign out1=in1<<imm[4:0]; //slli
