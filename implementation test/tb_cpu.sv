@@ -7,23 +7,23 @@ logic [31:0] iaddr;
 logic [31:0] pc;     
 logic [31:0] x31;
 
-Instr_IO_cpu_sig tb_connections(.*); //clk,reset,iaddr,pc,x31
 
-CPU ins (tb_connections);
-//clk=tb_connections.clk;
+// Instr_IO_cpu_sig tb_connections(.clk(clk), .reset(reset), .iaddr(iaddr), .pc(pc), .x31(x31)); //clk,reset,iaddr,pc,x31
+
+CPU ins (.*);
 
 initial begin 
-	clk=0;
+	clk = 0;
 end
 
-
-always #5 clk=~clk;
+always #5 clk = ~clk;
 
 initial begin
-$monitor($time, "\tx31: %d\tiaddr: %d\tpc: %d\tidata: %b",tb_connections.x31,tb_connections.iaddr,tb_connections.pc, tb_connections.idata);
+	$monitor($time, "\tx31: %d\tiaddr: %d\tpc: %d\tidata: %b", ins.x31, ins.iaddr, ins.pc, ins.instruction.idata);
 	reset=1; #12;
 	reset=0;
-	#50
+	#55
+	$display($time, "\tiaddr: %d\tclk: %d\tcpu_clk: %d\tcpu_reset: %d", ins.iaddr, clk, ins.clk, ins.reset);
 
 	#1000;
 	$finish;
