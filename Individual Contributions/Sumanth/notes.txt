@@ -1,0 +1,12 @@
+Implemented the RISC-V instruction sets R and I as interface port declaration 
+tested the both instructions R & I to implement in the main module CPU,
+
+Created the interface port for the CPU main module and mergerd all the required instances in the design and complied the main modeules without errors 
+and simulated with random testvector not a precise instrction set but verified is design been simulating or not.
+
+Debugged the issues of the interface ports and seen challenges like input of the instance block is been assigned as outputs to that block leading to 'X' values inputs to design 
+which enables no function to check.
+
+debugged issues with kai regarding the file inputs for the design worked parallely and debugged the issues while merging the modules.
+
+
