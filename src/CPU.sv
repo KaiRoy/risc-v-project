@@ -1,6 +1,5 @@
 // `timescale 1ns / 1ps
 `timescale 1ns / 1ns
-import Ins_def::*;
 import riscv_pkg::*;
 
 module CPU (
