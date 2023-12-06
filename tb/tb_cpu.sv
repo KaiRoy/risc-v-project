@@ -1,4 +1,4 @@
-// `timescale 1ns / 1ps
+
 `timescale 1ns / 1ns
 module cpu_tb;
 logic clk;
@@ -8,9 +8,10 @@ logic [31:0] pc;
 logic [31:0] x31;
 
 
-// Instr_IO_cpu_sig tb_connections(.clk(clk), .reset(reset), .iaddr(iaddr), .pc(pc), .x31(x31)); //clk,reset,iaddr,pc,x31
 
-CPU ins (.*);
+Instr_IO_cpu_sig signals (.*);
+
+CPU ins (signals);
 
 initial begin 
 	clk = 0;
@@ -19,12 +20,13 @@ end
 always #5 clk = ~clk;
 
 initial begin
-	$monitor($time, "\tx31: %d\tiaddr: %d\tpc: %d\tinstr: %b", ins.x31, ins.iaddr, ins.pc, ins.instruction.idata);
+	$monitor($time, "\tx31: %d\tiaddr: %d\tpc: %d\tinstr: %b", x31, iaddr, pc, ins.instruction.idata);
 	reset=1; #12;
 	reset=0;
 	#1000;
 	display_regfile();
 	display_dmem();
+	display_imem();
 	$finish;
 end
 
@@ -45,13 +47,14 @@ function void display_dmem();
 endfunction
 
 function void display_imem();
-	$display("\nContents of Register File:");
+	$display("\nContents of instruction memory File:");
 	for (int i = 0; i < 32; i++) begin
-		$display("Addr: %d\tData: %b", i, ins.im2_ins.i_arr[i]);
+		$display("Addr: %d\tData: %b", i, ins.im2_ins.i_arr[i][i]);
 	end
 endfunction
 
 function void display_regfile();
+$display("\nContents of instruction reg File:");
 	for (int i = 0; i < 32; i++) begin
 		$display("Addr: %d\tData: %d", i, ins.r1.r[i]);
 	end
