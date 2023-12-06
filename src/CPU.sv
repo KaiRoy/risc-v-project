@@ -1,23 +1,12 @@
-// `timescale 1ns / 1ps
+
 `timescale 1ns / 1ns
 import riscv_pkg::*;
 
-module CPU (
-	input logic clk,
-    input logic reset,
-	output logic [31:0] iaddr,  //Stores current Program counter value
-	output logic [31:0]  pc,     //Stores the value that is to be assigned in the next clk cycle to Program counter
-    output logic [31:0] x31
-);
-	Instr_IO_cpu_sig instruction(.*);
-
-
+module CPU (Instr_IO_cpu_sig instruction);
 	
 
-
-
-	always_ff @(posedge clk, posedge reset) begin
-        if (reset)       //Other functions for reset ????
+	always_ff @(posedge instruction.clk, posedge instruction.reset) begin
+        if (instruction.reset)       //Other functions for reset ????
             instruction.iaddr <= 0;
         else
             instruction.iaddr <= instruction.pc;
@@ -130,7 +119,8 @@ L_type l_ins (instruction.L_type_io_ports);
 S_type s_ins (instruction.S_type_io_ports);
 B_type b_ins (instruction.B_type_io_ports);
 
-imem im2_ins(instruction.imem_io_ports );
+
+imem im2_ins(instruction.imem_io_ports);
 dmem d1_ins (instruction.dmem_io_ports);
 regfile r1  (instruction.regfile_io_ports);
 
