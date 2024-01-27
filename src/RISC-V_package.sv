@@ -26,18 +26,30 @@ package riscv_pkg;
         JAL   = 7'b1101111,
         AUIPC = 7'b0010111,
         LUI   = 7'b0110111
-    } op_type;
+    } op_code;
 
-	enum logic [3:0] {
-		rs0 = 4'b0000,
-		rs1 = 4'b1000,
-		rs2 = 4'b0001,
-		rs3 = 4'b0010,
-		rs4 = 4'b0011,
-		rs5 = 4'b0100,
-		rs6 = 4'b0101,
-		rs7 = 4'b1101,
-		rs8 = 4'b0110,
-		rs9 = 4'b0111
-	} OP_CODE_R;
+	enum logic [4:0] { //instr[30, 25, 14:12]
+		ADD  = 5'b00000,
+		SUB  = 5'b10000,
+		SLL  = 5'b00001,
+		SLT  = 5'b00010,
+		SLTU = 5'b00011,
+		XOR  = 5'b00100,
+		SRL  = 5'b00101,
+		SRA  = 5'b10101,
+		OR   = 5'b00110,
+		AND  = 5'b00111
+    } r_func;
+
+    enum logic [4:0] { //instr[30, 25, 14:12]
+        MUL    = 5'b01000,
+        MULH   = 5'b01001,
+        MULHSU = 5'b01010,
+        MULHU  = 5'b01011,
+        DIV    = 5'b01100,
+        DIVU   = 5'b01101,
+        REM    = 5'b01110,
+        REMU   = 5'b01111
+    } m_func;
+
 endpackage

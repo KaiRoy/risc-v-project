@@ -1,6 +1,6 @@
 /****************************************************
 ** RISC-V_R_instr.sv
-** Author: Sri Sai Sumanth,
+** Author: Kai Roy,
 ** Version: 1.0
 ** Date: 11/21/2023
 ** Description: This file handles the R Type instructions
@@ -12,41 +12,41 @@
 import riscv_pkg::*;
 
 
-module R_type(Instr_IO_cpu_sig.R_type_io_ports bus_r);
-    
-    logic  [31:0] tmp1;
-    logic  [31:0] tmp2; 
-	
+module R_type(Instr_IO_cpu_sig.R_type_io_ports bus_r);	
 	logic [31:0] instr;
-	logic signed [31:0] in1,in2;
-	logic [31:0] out;
+	logic signed [31:0] rs1,rs2;
+    logic [31:0] u_rs1, u_rs2;
+	logic [31:0] rd;
 	
 	//input
 	assign instr=bus_r.idata;
-	assign in1=bus_r.rv1;
-	assign in2=bus_r.rv2;
+	assign rs1=bus_r.rv1;
+	assign rs2=bus_r.rv2;
 
 	//output
-	assign bus_r.regdata_R=out;
-	//assign out=in1+in2;
+	assign bus_r.regdata_R=rd;
+
+    r_func func;
+	assign func = r_func'({instr[30],instr[25],instr[14:12]});
 	
 
     always_comb
     begin
-		tmp1 = unsigned'(in1); // for unsigned operations 
-		tmp2 = unsigned'(in2);
-		//out=in1+in2;
-        unique if ({instr[30],instr[14:12]}==rs0) out = in1+in2;          //add
-        else if ({instr[30],instr[14:12]}==rs1)  out = in1-in2;          //sub
-        else if ({instr[30],instr[14:12]}==rs2)  out = in1<<in2[4:0];	  //sll
-        else if ({instr[30],instr[14:12]}==rs3)  out = in1<in2;          //slt
-        else if ({instr[30],instr[14:12]}==rs4)  out = tmp1<tmp2;        //sltu
-        else if ({instr[30],instr[14:12]}==rs5)  out = in1^in2;          //xor
-        else if ({instr[30],instr[14:12]}==rs6)  out = in1>>in2[4:0];    //srl
-        else if ({instr[30],instr[14:12]}==rs7)  out = in1>>>in2[4:0];   //sra
-        else if ({instr[30],instr[14:12]}==rs8)  out = in1|in2;          //or
-        else if ({instr[30],instr[14:12]}==rs9)  out = in1&in2;          //and
-		else ;
-        
+		u_rs1 = unsigned'(rs1); // for unsigned operations 
+		u_rs2 = unsigned'(rs2);
+		
+        unique case(func)
+            ADD:  rd = rs1+rs2;             //add
+            SUB:  rd = rs1-rs2;            //sub
+            SLL:  rd = rs1<<rs2[4:0];      //sll
+            SLT:  rd = rs1<rs2;            //slt
+            SLTU: rd = u_rs1<u_rs2;          //sltu
+            XOR:  rd = rs1^rs2;            //xor
+            SRL:  rd = rs1>>rs2[4:0];      //srl
+            SRA:  rd = rs1>>>rs2[4:0];     //sra
+            OR:   rd = rs1|rs2;            //or
+            AND:  rd = rs1&rs2;            //and
+		    default ;
+        endcase
     end
 endmodule : R_type

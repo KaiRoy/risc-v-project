@@ -15,7 +15,7 @@ module CPU (Instr_IO_cpu_sig instruction);
 
     always_comb     
     begin
-        case(op_type'(instruction.idata[6:0]))
+        case(op_code'(instruction.idata[6:0]))
             RTYPE:      //R type instructions
             begin
                 instruction.rd = instruction.idata[11:7];
