@@ -1,13 +1,79 @@
-# ece571-riscv-sv-conversion
-Project attempting to convert  emil's risc-v implementation from verilog to systemverilog
-## Repo Structure
-The individual contributions folder contains separate folders for each member of the group.
-In these folders are copies of the files that each person contributed to the project.
-A notes file is also included for anyone who worked on/modified other files.
+# RISC V SystemVerilog Model
+Project to expand on SystemVerilog RISC-V Model originally started as class project. 
 
-The implementation test folder contains any WIP files. 
-If any changes are to be made, the changes will be made to these files. 
-This ensures that a working version of the files is maintained, even when changes are being applied. 
+<!-- Image/link format
+![Name](folder/name.file) spaces encoded as %20
+-->
 
-The src and tb folders contain the current working versions of the files. 
-NOTE: Some individual module testbenches may no longer work as modifications were made to each module for CPU implementation. 
+## Table of Contents
+
+- [Description](#description)
+- [Design](#design)
+- [Current State](#current-state-of-the-project)
+- [Post Project Notes](#post-project-notes)
+- [Installation](#installation) <!-- Should I have Installation and Usage above or below the Design, Current State, Changes, etc? -->
+- [Usage](#usage)
+- [Credits](#credits)
+- [License](#license)
+
+## Description
+
+The goal of this project is to expand on the RISC-V SystemVerilog Model that started as a class group project fro my Introduction to SystemVerilog course. There are multiple tasks/end goals for the project and ideally more will be added as the project continues and as tasks are completed. 
+
+Tasks:
+- [ ] Code Refactoring
+- - [ ] Making the model synthesizable
+- [ ] Adding the Multiplication Extension
+- [ ] Adding a Cache Model, replacing the dmem and imem files, possibly the regfile modules as well
+- [ ] Synthesize the model
+
+## Designs
+
+<!-- Text -->
+
+
+## Current State of the Project
+
+<!-- Text -->
+
+
+## Post Project Notes
+
+<!-- Text -->
+
+
+## Installation/Setup
+
+<!-- What EDA libraries and files are needed for this project? -->
+
+
+<!--
+## Usage
+
+Provide instructions and examples for use. Include screenshots as needed.
+
+To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
+
+    ```md
+    ![alt text](assets/images/screenshot.png)
+    ```
+
+## Features
+
+If your project has a lot of features, list them here.
+
+## Tests/Simulation
+
+-->
+
+## Credits
+
+<!-- List your collaborators, if any, with links to their GitHub profiles. -->
+
+
+<!-- If you used any third-party assets that require attribution, list the creators with links to their primary web presence in this section. -->
+<!-- Link the Symbols and Footprints used? -->
+
+## License
+
+<!-- Licensed under the [CERN-OHL-S-2.0](LICENSE.txt) License -->
