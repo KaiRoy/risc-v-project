@@ -4,11 +4,14 @@
 //IMEM module
     
 module imem(Instr_IO_cpu_sig imem_if);
+	logic 	[31:0] iaddr;
+	wire 	[31:0] idata;
 
-logic [31:0] iaddr;
-wire [31:0] idata;
-assign iaddr=imem_if.iaddr;
-assign imem_if.idata=idata;
+	//input
+	assign iaddr = imem_if.iaddr;
+
+	//output
+	assign imem_if.idata = idata;
 
     logic [31:0] i_arr[0:31];
     initial begin

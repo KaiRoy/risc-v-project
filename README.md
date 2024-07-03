@@ -1,5 +1,5 @@
 # RISC V SystemVerilog Model
-Project to expand on SystemVerilog RISC-V Model originally started as class project. 
+Project to expand on a SystemVerilog RISC-V Model originally started as class project. 
 
 <!-- Image/link format
 ![Name](folder/name.file) spaces encoded as %20
@@ -22,7 +22,9 @@ The goal of this project is to expand on the RISC-V SystemVerilog Model that sta
 
 Tasks:
 - [ ] Code Refactoring
-- - [ ] Making the model synthesizable
+- [ ] Make the model synthesizable
+- [ ] Add emulation Support
+- [ ] Emulate the model (If resources are available)
 - [ ] Adding the Multiplication Extension
 - [ ] Adding a Cache Model, replacing the dmem and imem files, possibly the regfile modules as well
 - [ ] Synthesize the model

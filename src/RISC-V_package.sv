@@ -7,16 +7,7 @@
 ** enums, structs, etc for the RISC-V Processor
 ****************************************************/
 package riscv_pkg;
-    typedef enum logic[2:0] {
-        BEQ  = 3'b000,
-        BNE  = 3'b001,
-        BLT  = 3'b100,
-        BGE  = 3'b101,
-        BGEU = 3'b110,
-        BLTU = 3'b111
-    } branch_instr;
-
-    typedef enum logic[6:0] {
+	typedef enum logic[6:0] {
         RTYPE = 7'b0110011,
         ITYPE = 7'b0010011,
         LTYPE = 7'b0000011,
@@ -28,7 +19,16 @@ package riscv_pkg;
         LUI   = 7'b0110111
     } op_code;
 
-	enum logic [4:0] { //instr[30, 25, 14:12]
+	typedef enum logic[2:0] {
+        BEQ  = 3'b000,
+        BNE  = 3'b001,
+        BLT  = 3'b100,
+        BGE  = 3'b101,
+        BGEU = 3'b110,
+        BLTU = 3'b111
+    } branch_instr;
+
+	typedef enum logic [4:0] { //instr[30, 25, 14:12]
 		ADD  = 5'b00000,
 		SUB  = 5'b10000,
 		SLL  = 5'b00001,
@@ -41,7 +41,28 @@ package riscv_pkg;
 		AND  = 5'b00111
     } r_func;
 
-    enum logic [4:0] { //instr[30, 25, 14:12]
+	// NEED TO FIGURE OUT FUNC FORMAT
+	typedef enum logic [2:0] { //instr[30, 25, 14:12]
+		ADDI  = 3'b000,
+		SLLI  = 3'b001,
+		SLTI  = 3'b010,
+		SLTIU = 3'b011,
+		XORI  = 3'b100,
+		SRLI  = 3'b101,
+		// SRAI  = 3'b101,
+		ORI   = 3'b110,
+		ANDI  = 3'b111
+	} i_func;
+	
+	typedef enum logic [2:0] { //instr[30, 25, 14:12]
+		LB  = 3'b000,
+		LH  = 3'b001,
+		LW  = 3'b010,
+		LBU = 3'b011,
+		LHU  = 3'b100,
+	} i_func;
+
+    typedef enum logic [4:0] { //instr[30, 25, 14:12]
         MUL    = 5'b01000,
         MULH   = 5'b01001,
         MULHSU = 5'b01010,
