@@ -22,16 +22,22 @@ The goal of this project is to expand on the RISC-V SystemVerilog Model that sta
 
 Tasks:
 - [ ] Code Refactoring
-- [ ] Make the model synthesizable
-- [ ] Add emulation Support
+- [ ] Ensure the model synthesizable
+- [ ] Add Emulation Support
 - [ ] Emulate the model (If resources are available)
-- [ ] Adding the Multiplication Extension
-- [ ] Adding a Cache Model, replacing the dmem and imem files, possibly the regfile modules as well
-- [ ] Synthesize the model
+- [ ] Add the Multiplication Extension
+- [ ] Add the Floating Point Extension (Check if this is an extension)
+- [ ] Create and Add a Cache Model
+- [ ] Add Pipelining to the Model
+- [ ] Expand the model to 64 or 128 bit
 
 ## Designs
 
-<!-- Text -->
+**Code Refactoring**
+
+
+**Model Synthesizable**
+
 
 
 ## Current State of the Project
