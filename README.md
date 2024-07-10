@@ -30,7 +30,7 @@ General Tasks:
 
 Model Extensions Tasks:
 - [ ] Add the Integer Multiplication & Division Extension
-- [ ] Add the Atomic INstructions Extension
+- [ ] Add the Atomic Instructions Extension
 - [ ] Add the Single-Precision Floating Point Extension
 - [ ] Add the Double-Precision Floating Point Extension
 - [ ] Add the Quad-Precision Floating Point Extension

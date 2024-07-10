@@ -1,14 +1,13 @@
 /****************************************************
-** RISC-V_R_instr.sv
+** RISC-V_M_instr.sv
 ** Author: Kai Roy,
 ** Version: 1.0
-** Date: 11/21/2023
+** Date: 7/10/2024
 ** Description: This file handles the MULDIV instructions
 ** of a RISC-V Single Cycle Processor. (WIP)
 ****************************************************/
 // `timescale 1ns / 1ps
 `timescale 1ns / 1ns
-
 import riscv_pkg::*;
 
 
