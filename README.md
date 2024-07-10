@@ -20,29 +20,48 @@ Project to expand on a SystemVerilog RISC-V Model originally started as class pr
 
 The goal of this project is to expand on the RISC-V SystemVerilog Model that started as a class group project fro my Introduction to SystemVerilog course. There are multiple tasks/end goals for the project and ideally more will be added as the project continues and as tasks are completed. 
 
-Tasks:
+General Tasks:
 - [ ] Code Refactoring
 - [ ] Ensure the model synthesizable
 - [ ] Add Emulation Support
 - [ ] Emulate the model (If resources are available)
-- [ ] Add the Multiplication Extension
-- [ ] Add the Floating Point Extension (Check if this is an extension)
 - [ ] Create and Add a Cache Model
 - [ ] Add Pipelining to the Model
+
+Model Extensions Tasks:
+- [ ] Add the Integer Multiplication & Division Extension
+- [ ] Add the Atomic INstructions Extension
+- [ ] Add the Single-Precision Floating Point Extension
+- [ ] Add the Double-Precision Floating Point Extension
+- [ ] Add the Quad-Precision Floating Point Extension
+- [ ] Add the Compressed Instrcution Extension
 - [ ] Expand the model to 64 or 128 bit
 
 ## Designs
 
 **Code Refactoring**
 
+<!--
+**Synthesize Model**
 
-**Model Synthesizable**
+
+**Emulation Support**
 
 
+**Pipelining**
+
+
+**Cache Model Addition (Separate Repo Project?)**
+
+
+**Extension Modules**
+
+-->
 
 ## Current State of the Project
 
-<!-- Text -->
+The project is current in the planning and Code Refactoring stage of the project. 
+Most of the modules have been modified but are untested. 
 
 
 ## Post Project Notes
