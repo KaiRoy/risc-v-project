@@ -41,7 +41,7 @@ module tb();
     assign func = r_func'({bus.idata[30], bus.idata[25], bus.idata[14:12]});
 
 	// Instantiate the module
-    R_type iDUT(bus.B_type_io_ports);
+    R_type iDUT(bus.R_type_io_ports);
 
 	// Display System
     function void display_state;
