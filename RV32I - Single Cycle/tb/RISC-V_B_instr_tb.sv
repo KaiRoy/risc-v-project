@@ -2,8 +2,8 @@
 ** RISC-V_B_instr_tb.sv
 ** Author: Kai Roy, 
 ** Version: 1.0
-** Date: 7/10/2024
-** Description: Testbench for the RISC-V_B_instr.sv file (WIP)
+** Date: 7/13/2024
+** Description: Testbench for the RISC-V_B_instr.sv file
 ****************************************************/
 `timescale 1ns / 1ps
 import riscv_pkg::*;
@@ -71,100 +71,106 @@ module tb();
     // Test Stimulus
     initial begin
         #10;
-        display_b_txt("Test 1: BEQ");
-        $cast(idata[14:12], BEQ);
+        display_b_txt("Test 1: BEQ");	// Testing BEQ
+        $cast(idata[14:12], BEQ);		// Set instruction and registers
         rv1 = 10;
         rv2 = 10;
-        #1 display_state();
-		if (imm == iaddr_val)
+        #1 display_state();				// Display Current State/Results
+		if (imm == iaddr_val)			// Result should be equal
+			display_pass("PASS");		
+		else 
+			display_pass("FAIL");
+		
+        #10
+        rv1 = 5;						// Set new register values
+        #1 display_state();				// Display Current State/Results
+		if (imm != iaddr_val)			// Result should NOT be equal
+			display_pass("PASS");
+		else 
+			display_pass("FAIL");
+
+
+        #5;
+        display_b_txt("Test 2: BNE");	// Testing BNE
+        $cast(idata[14:12], BNE);		// Set instruction and registers
+        rv1 = 10;
+        rv2 = 10;
+        #1 display_state();				// Display Current State/Results
+		if (imm != iaddr_val)			// Result should NOT be equal
 			display_pass("PASS");
 		else 
 			display_pass("FAIL");
         #10
-        rv1 = 5;
-        #1 display_state();
-		if (imm != iaddr_val)
+        rv1 = 5;						// Set new register values
+        #1 display_state();				// Display Current State/Results
+		if (imm == iaddr_val)			// Result should be equal
 			display_pass("PASS");
 		else 
 			display_pass("FAIL");
 
-        #5;
-        display_b_txt("Test 2: BNE");
-        $cast(idata[14:12], BNE);
-        rv1 = 10;
-        rv2 = 10;
-        #1 display_state();
-		if (imm != iaddr_val)
-			display_pass("PASS");
-		else 
-			display_pass("FAIL");
-        #10
-        rv1 = 5;
-        #1 display_state();
-		if (imm == iaddr_val)
-			display_pass("PASS");
-		else 
-			display_pass("FAIL");
 
         #5;
-        display_b_txt("Test 3: BLT");
-        $cast(idata[14:12], BLT);
+        display_b_txt("Test 3: BLT");	// Testing BLT
+        $cast(idata[14:12], BLT);		// Set instruction and registers
         rv1 = 10;
         rv2 = 15;
-        #1 display_state();
-		if (imm == iaddr_val)
+        #1 display_state();				// Display Current State/Results
+		if (imm == iaddr_val)			// Result should be equal
 			display_pass("PASS");
 		else 
 			display_pass("FAIL");
         #5
-        rv2 = -15;
-        #1 display_state();
-		if (imm != iaddr_val)
+        rv2 = -15;						// Set new register values
+        #1 display_state();				// Display Current State/Results	
+		if (imm != iaddr_val)			// Result shoud NOT be equal
 			display_pass("PASS");
 		else 
 			display_pass("FAIL");
 
+
         #5;
-        display_b_txt("Test 4: BGE");
-        $cast(idata[14:12], BGE);
+        display_b_txt("Test 4: BGE");	// Testing BGE
+        $cast(idata[14:12], BGE);		// Set instruction and registers
         rv1 = 10;
         rv2 = -15;
-        #1 display_state();
-		if (imm == iaddr_val)
+        #1 display_state();				// Display Current State/Results
+		if (imm == iaddr_val)			// Result should be equal
 			display_pass("PASS");
 		else 
 			display_pass("FAIL");
         #5
-        rv2 = 15;
-        #1 display_state();
-		if (imm != iaddr_val)
+        rv2 = 15;						// Set new register values
+        #1 display_state();				// Display Current State/Results
+		if (imm != iaddr_val)			// Result should not be equal
 			display_pass("PASS");
 		else 
 			display_pass("FAIL");
 
+
         #5;
-        display_b_txt("Test 5: BGEU");
-        $cast(idata[14:12], BGEU);
+        display_b_txt("Test 5: BGEU");	// Testing BGEU
+        $cast(idata[14:12], BGEU);		// Set instruction and registers
         rv1 = 10;
-        rv2 = 5;
-        #1 display_state();
-		if (imm == iaddr_val)
+        rv2 = 5;	
+        #1 display_state();				// Display Current State/Results
+		if (imm == iaddr_val)			// Result should be equal
 			display_pass("PASS");
 		else 
 			display_pass("FAIL");
 
+
         #5;
-        display_b_txt("Test 6: BLTU");
-        $cast(idata[14:12], BLTU);
+        display_b_txt("Test 6: BLTU");	//Testing BLTU
+        $cast(idata[14:12], BLTU);		// Set instruction and registers
         rv1 = 10;
         rv2 = 5;
-        #1 display_state();
-		if (imm != iaddr_val)
+        #1 display_state();				// Display Current State/Results
+		if (imm != iaddr_val)			// Result should not be equal
 			display_pass("PASS");
 		else 
 			display_pass("FAIL");
         
-        #5
-        $finish;
+		
+        #5; $finish;					// Stimulus End
     end
 endmodule
