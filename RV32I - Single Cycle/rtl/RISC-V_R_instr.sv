@@ -13,9 +13,8 @@ import riscv_pkg::*;
 
 module R_type(Instr_IO.R_type_io_ports bus);	
 	logic [4:0] instr;
-	logic signed [31:0] rs1,rs2;
+	logic signed [31:0] rs1,rs, rd;
     logic [31:0] u_rs1, u_rs2;
-	logic [31:0] rd;
 	
 	//input
 	assign instr	= {bus.idata[30], bus.idata[25], bus.idata[14:12]};
