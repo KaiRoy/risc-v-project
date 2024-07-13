@@ -46,7 +46,7 @@ module tb();
 	// Display System
     function void display_state;
         $display("Instruction: %0s\nrv1 = %d\trv2 = %d\nrd: %d\n", 
-        iaddr, func.name(), imm, rv1, rv2, rd);
+        func.name(), rv1, rv2, rd);
     endfunction
     function void display_b_txt(string str);
         $display("\n%c[1;34m",27);
@@ -169,6 +169,9 @@ module tb();
 			display_pass("PASS");
 		else 
 			display_pass("FAIL");
+
+		#5
+		$finish;
 	end
 
 endmodule : tb
