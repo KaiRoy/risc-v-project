@@ -52,6 +52,12 @@ module tb();
         $write(str);
         $display("%c[0m\n",27);
     endfunction
+	function void display_pass(string str);
+		$display("%c[1;31m",27);
+        $write(str);
+        $display("%c[0m\n",27);
+	endfunction
+
 
     // Initial Values
     initial begin
@@ -70,9 +76,17 @@ module tb();
         rv1 = 10;
         rv2 = 10;
         #1 display_state();
+		if (imm == iaddr_val)
+			display_pass("PASS");
+		else 
+			display_pass("FAIL");
         #10
         rv1 = 5;
         #1 display_state();
+		if (imm != iaddr_val)
+			display_pass("PASS");
+		else 
+			display_pass("FAIL");
 
         #5;
         display_b_txt("Test 2: BNE");
@@ -80,9 +94,17 @@ module tb();
         rv1 = 10;
         rv2 = 10;
         #1 display_state();
+		if (imm != iaddr_val)
+			display_pass("PASS");
+		else 
+			display_pass("FAIL");
         #10
         rv1 = 5;
         #1 display_state();
+		if (imm == iaddr_val)
+			display_pass("PASS");
+		else 
+			display_pass("FAIL");
 
         #5;
         display_b_txt("Test 3: BLT");
@@ -90,9 +112,17 @@ module tb();
         rv1 = 10;
         rv2 = 15;
         #1 display_state();
+		if (imm == iaddr_val)
+			display_pass("PASS");
+		else 
+			display_pass("FAIL");
         #5
         rv2 = -15;
         #1 display_state();
+		if (imm != iaddr_val)
+			display_pass("PASS");
+		else 
+			display_pass("FAIL");
 
         #5;
         display_b_txt("Test 4: BGE");
@@ -100,9 +130,17 @@ module tb();
         rv1 = 10;
         rv2 = -15;
         #1 display_state();
+		if (imm == iaddr_val)
+			display_pass("PASS");
+		else 
+			display_pass("FAIL");
         #5
         rv2 = 15;
         #1 display_state();
+		if (imm != iaddr_val)
+			display_pass("PASS");
+		else 
+			display_pass("FAIL");
 
         #5;
         display_b_txt("Test 5: BGEU");
@@ -110,6 +148,10 @@ module tb();
         rv1 = 10;
         rv2 = 5;
         #1 display_state();
+		if (imm == iaddr_val)
+			display_pass("PASS");
+		else 
+			display_pass("FAIL");
 
         #5;
         display_b_txt("Test 6: BLTU");
@@ -117,6 +159,10 @@ module tb();
         rv1 = 10;
         rv2 = 5;
         #1 display_state();
+		if (imm != iaddr_val)
+			display_pass("PASS");
+		else 
+			display_pass("FAIL");
         
         #5
         $finish;
