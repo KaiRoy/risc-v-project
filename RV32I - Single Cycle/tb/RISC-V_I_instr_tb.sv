@@ -139,7 +139,7 @@ module tb;
 		display_b_txt("Test 8: SRLI");
 		$cast({idata[14:12]}, SRLI);
 		rv1=32'd949;
-		imm=32'd372;
+		imm=32'd3;
 		idata[30] = 0;
 		#1 display_state();
 		if (rd == (rv1 >> imm[4:0]))
@@ -151,7 +151,7 @@ module tb;
 		display_b_txt("Test 9: SRAI");
 		$cast({idata[14:12]}, SRLI);
 		rv1=32'd949;
-		imm=32'd372;
+		imm=32'd3;
 		idata[30] = 1;
 		#1 display_state();
 		if (rd == (rv1 >>> imm[4:0]))
