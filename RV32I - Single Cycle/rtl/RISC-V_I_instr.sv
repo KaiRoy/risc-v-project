@@ -12,66 +12,36 @@ import riscv_pkg::*;
 
 
 module I_type(Instr_IO.I_type_io_ports bus);
-	logic 		[31:0] 	out0,out1,out2,out3,out4,out5,out6,out7;
-	logic 		[2:0] 	sel;
-    logic 		[31:0] 	tmp1;
-    logic 		[11:0] 	tmp2;
-	
-	wire  		[31:0] 	instr;
-	wire signed [31:0] 	in1;
-	logic signed[31:0] 	imm;
-	wire 		[31:0] 	out;
+    logic [2:0] instr;
+	logic signed [31:0] rs1, imm;
+	logic [31:0] u_rs1, u_imm;
+	logic [31:0] rd;
 	
 	assign instr	= {bus.idata[14:12]};
-	assign in1		= bus.rv1;
+	assign rs1		= bus.rv1;
 	assign imm		= bus.imm;
 
-	assign bus.regdata_I = out;
+	assign bus.regdata_I = rd;
 	
 	
-    assign tmp1 = unsigned'(in1);
-    assign tmp2 = unsigned'(imm);
+    assign u_rs1 = unsigned'(rs1);
+    assign u_imm = unsigned'(imm);
 
 	i_func func;
 	assign func = i_func'(instr);
 
-	// NEED TO FIGURE OUT FUNC FORMAT!!!
-
 	always_comb begin
 		unique case(func)
-            ADDI:  	out = in1+imm;
-            SLTI:  	out = in1<imm;
-            SLTIU: 	out = tmp1<tmp2;
-            XORI: 	out = in1 ^ imm;
-			ORI:	out = in1 | imm;
-			ANDI:	out = in1 & imm;
-			SLLI:  	out = in1<<imm[4:0];
-            SRLI: 	out = bus.idata[30] ? in1>>imm[4:0] : in1>>>imm[4:0]; //srli || srai
+            ADDI:  	rd = rs1+imm;
+            SLTI:  	rd = rs1<imm;
+            SLTIU: 	rd = u_rs1<u_imm;
+            XORI: 	rd = rs1 ^ imm;
+			ORI:	rd = rs1 | imm;
+			ANDI:	rd = rs1 & imm;
+			SLLI:  	rd = rs1<<imm[4:0];
+            SRLI: 	rd = bus.idata[30] ? rs1>>imm[4:0] : rs1>>>imm[4:0]; //srli || srai
 		    default: ;
 		endcase
 	end
 
-	// assign out0 = in1+imm; //addi
-	// assign out1 = in1<<imm[4:0]; //slli
-	// assign out2 = in1<imm; //slti
-	// assign out3 = tmp1<tmp2; //sltiu
-	// assign out4 = in1 ^ imm; //xori
-	// assign out5 = bus.idata[30] ? in1>>imm[4:0] : in1>>>imm[4:0];   //srli || srai
-	// assign out6 = in1 | imm; //ori
-	// assign out7 = in1 & imm; //andi
-
-	// mux_3 inst1 (sel,out0,out1,out2,out3,out4,out5,out6,out7,out);
-
 endmodule : I_type
-
-
-
-// module mux_3(
-// 	input 	logic [2:0] 	s, 
-// 	input 	logic [31:0] 	i0,i1,i2,i3,i4,i5,i6,i7, 
-// 	output 	logic [31:0] 	y
-// );
-
-// 	assign y = s[2] ? (s[1] ? (s[0] ? i7 : i6) : (s[0] ? i5 : i4 )) : (s[1] ? (s[0] ? i3 : i2) : (s[0] ? i1 : i0));
-
-// endmodule : mux_3
