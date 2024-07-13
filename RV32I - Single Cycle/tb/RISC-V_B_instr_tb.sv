@@ -53,9 +53,9 @@ module tb();
         $display("%c[0m\n",27);
     endfunction
 	function void display_pass(string str);
-		$display("%c[1;31m",27);
+		$write("%c[1;31m",27);
         $write(str);
-        $display("%c[0m\n",27);
+        $write("%c[0m\n",27);
 	endfunction
 
 
