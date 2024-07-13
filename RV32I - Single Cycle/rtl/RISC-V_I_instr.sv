@@ -37,41 +37,41 @@ module I_type(Instr_IO.I_type_io_ports bus);
 
 	// NEED TO FIGURE OUT FUNC FORMAT!!!
 
-	// always_comb begin
-	// 	unique case(func)
-    //         ADDI:  	out = in1+imm;
-    //         SLLI:  	out = in1<<imm[4:0];
-    //         SLTI:  	out = in1<imm;
-    //         SLTIU: 	out = tmp1<tmp2;
-    //         XORI: 	out = in1 ^ imm;
-    //         SRLI: 	out = instr[30] ? in1>>imm[4:0] : in1>>>imm[4:0]; //handles both srli + srai?
-	// 		ORI:	out = in1 | imm;
-	// 		ANDI:	out = in1 & imm;
-	// 	    default: ;
-	// 	endcase
-	// end
+	always_comb begin
+		unique case(func)
+            ADDI:  	out = in1+imm;
+            SLTI:  	out = in1<imm;
+            SLTIU: 	out = tmp1<tmp2;
+            XORI: 	out = in1 ^ imm;
+			ORI:	out = in1 | imm;
+			ANDI:	out = in1 & imm;
+			SLLI:  	out = in1<<imm[4:0];
+            SRLI: 	out = bus.idata[30] ? in1>>imm[4:0] : in1>>>imm[4:0]; //srli || srai
+		    default: ;
+		endcase
+	end
 
-	assign out0 = in1+imm; //addi
-	assign out1 = in1<<imm[4:0]; //slli
-	assign out2 = in1<imm; //slti
-	assign out3 = tmp1<tmp2; //sltiu
-	assign out4 = in1 ^ imm; //xori
-	assign out5 = instr[30] ? in1>>imm[4:0] : in1>>>imm[4:0];   //srli || srai
-	assign out6 = in1 | imm; //ori
-	assign out7 = in1 & imm; //andi
+	// assign out0 = in1+imm; //addi
+	// assign out1 = in1<<imm[4:0]; //slli
+	// assign out2 = in1<imm; //slti
+	// assign out3 = tmp1<tmp2; //sltiu
+	// assign out4 = in1 ^ imm; //xori
+	// assign out5 = bus.idata[30] ? in1>>imm[4:0] : in1>>>imm[4:0];   //srli || srai
+	// assign out6 = in1 | imm; //ori
+	// assign out7 = in1 & imm; //andi
 
-	mux_3 inst1 (sel,out0,out1,out2,out3,out4,out5,out6,out7,out);
+	// mux_3 inst1 (sel,out0,out1,out2,out3,out4,out5,out6,out7,out);
 
 endmodule : I_type
 
 
 
-module mux_3(
-	input 	logic [2:0] 	s, 
-	input 	logic [31:0] 	i0,i1,i2,i3,i4,i5,i6,i7, 
-	output 	logic [31:0] 	y
-);
+// module mux_3(
+// 	input 	logic [2:0] 	s, 
+// 	input 	logic [31:0] 	i0,i1,i2,i3,i4,i5,i6,i7, 
+// 	output 	logic [31:0] 	y
+// );
 
-	assign y = s[2] ? (s[1] ? (s[0] ? i7 : i6) : (s[0] ? i5 : i4 )) : (s[1] ? (s[0] ? i3 : i2) : (s[0] ? i1 : i0));
+// 	assign y = s[2] ? (s[1] ? (s[0] ? i7 : i6) : (s[0] ? i5 : i4 )) : (s[1] ? (s[0] ? i3 : i2) : (s[0] ? i1 : i0));
 
-endmodule : mux_3
+// endmodule : mux_3
