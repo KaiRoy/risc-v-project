@@ -35,7 +35,7 @@ module tb();
     assign rd = bus.regdata_R;
 
 	// Variables
-    r_fun func;
+    r_func func;
     assign func = r_func'({bus.idata[30], bus.idata[25], bus.idata[14:12]});
 
 	// Instantiate the module
