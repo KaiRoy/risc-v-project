@@ -118,7 +118,11 @@ module tb;
 		$cast({idata[14:12]}, ANDI);
 		rv1=32'd503;
 		imm=32'd746;
-		#1;
+		#1 display_state();
+		if (rd == (rv1 & imm))
+			display_pass("PASS");
+		else 
+			display_pass("FAIL");
 		
 		#10 //SLLI
 		display_b_txt("Test 7: SLLI");
