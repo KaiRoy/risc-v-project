@@ -48,14 +48,14 @@ module tb();
         iaddr, branch.name(), imm, rv1, rv2, iaddr_val);
     endfunction
     function void display_b_txt(string str);
-        $display("%c[1;34m",27);
+        $display("\n%c[1;34m",27);
         $write(str);
         $display("%c[0m\n",27);
     endfunction
 	function void display_pass(string str);
 		$write("%c[1;31m",27);
         $write(str);
-        $write("%c[0m\n",27);
+        $write("%c[0m\n\n",27);
 	endfunction
 
 
