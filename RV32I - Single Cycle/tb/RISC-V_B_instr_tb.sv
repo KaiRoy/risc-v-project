@@ -36,8 +36,8 @@ module tb();
     assign iaddr_val = bus.iaddr_val;
 
     // Variables
-    branch_instr branch;
-    assign branch = branch_instr'(idata[14:12]);
+    b_func branch;
+    assign branch = b_func'(idata[14:12]);
 
     // Instantiate the module
     B_type iDUT(bus.B_type_io_ports);

@@ -28,12 +28,12 @@ module B_type(Instr_IO.B_type_io_ports bus);
 
 
     //Additional Varibales
-	branch_instr branch;
+	b_func branch;
     logic [31:0] u_rs1, u_rs2;
 
 	assign u_rs1 = unsigned'(rs1);
 	assign u_rs2 = unsigned'(rs2);
-    assign branch = branch_instr'(instr);
+    assign branch = b_func'(instr);
 
     always_comb begin
 		unique case(branch)

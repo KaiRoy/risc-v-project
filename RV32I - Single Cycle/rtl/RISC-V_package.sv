@@ -26,7 +26,7 @@ package riscv_pkg;
         BGE  = 3'b101,
         BGEU = 3'b110,
         BLTU = 3'b111
-    } branch_instr;
+    } b_func;
 
 	typedef enum logic [4:0] { //instr[30, 25, 14:12]
 		ADD  = 5'b00000,
