@@ -21,7 +21,7 @@ module tb;
     logic signed [31:0] imm, rv1, rv2;
 
     // Outputs
-    logic [31:0] iaddr_val;
+    logic [31:0] rd;
 
 	// Interface
     Instr_IO bus(.*);
