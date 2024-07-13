@@ -68,4 +68,15 @@ package riscv_pkg;
 		SW  = 3'b010,
 	} s_func;
 
+    typedef enum logic [4:0] { //instr[30, 25, 14:12]
+        MUL    = 5'b01000,
+        MULH   = 5'b01001,
+        MULHSU = 5'b01010,
+        MULHU  = 5'b01011,
+        DIV    = 5'b01100,
+        DIVU   = 5'b01101,
+        REM    = 5'b01110,
+        REMU   = 5'b01111
+    } m_func;
+
 endpackage

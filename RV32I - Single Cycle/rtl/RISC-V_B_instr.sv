@@ -12,7 +12,7 @@
 import riscv_pkg::*;
 
 
-module B_type(Instr_IO_cpu_sig.B_type_io_ports bus);
+module B_type(Instr_IO.B_type_io_ports bus);
     logic 			[31:0] 	pc, iaddr;
     logic signed 	[31:0] 	imm, rs1, rs2;
     wire 			[2:0] 	instr;

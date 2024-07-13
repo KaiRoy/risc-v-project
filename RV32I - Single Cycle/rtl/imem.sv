@@ -3,7 +3,7 @@
 
 //IMEM module
     
-module imem(Instr_IO_cpu_sig imem_if);
+module imem(Instr_IO imem_if);
 	logic 	[31:0] iaddr;
 	wire 	[31:0] idata;
 

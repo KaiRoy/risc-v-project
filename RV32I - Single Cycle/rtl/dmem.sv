@@ -2,7 +2,7 @@
 `timescale 1ns / 1ns
 //DMEM module
     
-module dmem(Instr_IO_cpu_sig dmem_if);
+module dmem(Instr_IO dmem_if);
 	logic 			clk;
 	logic	[31:0] 	daddr;
 	logic 	[31:0] 	dwdata;

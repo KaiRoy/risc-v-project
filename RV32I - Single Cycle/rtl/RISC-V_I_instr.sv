@@ -11,7 +11,7 @@
 import riscv_pkg::*;
 
 
-module I_type(Instr_IO_cpu_sig.I_type_io_ports bus);
+module I_type(Instr_IO.I_type_io_ports bus);
 	logic 		[31:0] 	out0,out1,out2,out3,out4,out5,out6,out7;
 	logic 		[2:0] 	sel;
     logic 		[31:0] 	tmp1;

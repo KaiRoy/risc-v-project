@@ -15,7 +15,7 @@
 import riscv_pkg::*;
 
 
-module S_type(Instr_IO_cpu_sig.S_type_io_ports bus_s);
+module S_type(Instr_IO.S_type_io_ports bus_s);
 	wire 	[31:0] 	instr;
 	logic 	[31:0] 	daddr;
 	logic 	[3:0] 	we_S;

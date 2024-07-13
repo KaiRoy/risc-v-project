@@ -1,15 +1,13 @@
-interface  Instr_IO_cpu_sig (
+interface  Instr_IO (
 	input 	logic 			clk,
-    input 	logic 			reset,	
 	output 	logic [31:0] 	iaddr,	//Stores current Program counter value
-	output 	logic [31:0]  	pc,		//Stores the value that is to be assigned in the next clk cycle to Program counter
     output 	logic [31:0] 	x31
 	);
 
 	// Control Signals
 	logic 	[3:0] 	we;			// write enable signal for each byte of 32-b word
 	logic 			wer;
-	wire 	[3:0] 	we_S;
+	wire 	[3:0] 	we_S;		//??Interval??
 
 	// Main Data Variables
 	logic 	[31:0] 	idata;		// data from instruction memory
@@ -19,14 +17,14 @@ interface  Instr_IO_cpu_sig (
 	logic 	[31:0] 	regdata;
 
 	// Interval Data Variables
-	wire 	[31:0] 	regdata_R, regdata_I;
-	wire 	[31:0] 	regdata_L, iaddr_val;
+	wire 	[31:0] 	regdata_R, regdata_I;	//??Interval??
+	wire 	[31:0] 	regdata_L, iaddr_val;	//??Interval??
 
 	// Address Breakdown
 	logic 	[4:0] 	rd,rs1,rs2;
 	logic 	[31:0] 	imm;
 	
-	logic 	[31:0] 	rv1, rv2;
+	logic 	[31:0] 	rv1, rv2;		//??Interval??
 
 
 	modport R_type_io_ports (input idata, input rv1, input rv2, output regdata_R); 

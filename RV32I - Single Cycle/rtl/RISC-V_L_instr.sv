@@ -13,7 +13,7 @@
 import riscv_pkg::*;
 
 
-module L_type(Instr_IO_cpu_sig.L_type_io_ports bus);
+module L_type(Instr_IO.L_type_io_ports bus);
     logic [31:0] instr;
     logic [31:0] daddr;
     logic [31:0] drdata;

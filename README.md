@@ -27,6 +27,7 @@ General Tasks:
 - [ ] Emulate the model (If resources are available)
 - [ ] Create and Add a Cache Model
 - [ ] Add Pipelining to the Model
+- [ ] Multi-Core CPU Model
 
 Model Extensions Tasks:
 - [ ] Add the Integer Multiplication & Division Extension

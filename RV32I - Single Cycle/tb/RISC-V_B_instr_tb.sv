@@ -2,23 +2,29 @@
 ** RISC-V_B_instr_tb.sv
 ** Author: Kai Roy, 
 ** Version: 1.0
-** Date: 11/20/2023
+** Date: 7/10/2024
 ** Description: Testbench for the RISC-V_B_instr.sv file (WIP)
 ****************************************************/
 `timescale 1ns / 1ps
 import riscv_pkg::*;
 
 module tb();
-    // Interface
-    Instr_IO bus ();
+	// Base Vars
+	logic clk;
+	logic reset;
+	logic [31:0] iaddr;  
+	logic [31:0] pc;     
+	logic [31:0] x31;
 
     // Inputs
     reg [31:0] idata;
-    logic [31:0] iaddr;
     logic signed [31:0] imm, rv1, rv2;
 
     // Outputs
     logic [31:0] iaddr_val;
+
+	// Interface
+    Instr_IO bus(.*);
 
     // Aliases
     assign bus.idata = idata;
@@ -34,7 +40,7 @@ module tb();
     assign branch = branch_instr'(idata[14:12]);
 
     // Instantiate the module
-    B_type iDUT (bus);
+    B_type iDUT(bus.B_type_io_ports);
 
     // Display System
     function void display_state;

@@ -9,7 +9,15 @@
 `timescale 1ns / 1ns
 import riscv_pkg::*;
 
-module CPU (Instr_IO_cpu_sig instr);
+module CPU (
+	input 	logic 			clk,
+    input 	logic 			reset,	
+	output 	logic [31:0] 	iaddr,	//Stores current Program counter value
+	output 	logic [31:0]  	pc,		//Stores the value that is to be assigned in the next clk cycle to Program counter
+    output 	logic [31:0] 	x31
+	);
+
+	Instr_IO instr (.*);
 
 	always_ff @(posedge instr.clk, posedge instr.reset) begin
         if (instr.reset)       //Other functions for reset ????

@@ -2,7 +2,7 @@
 `timescale 1ns / 1ns
 //Regfile module
 	
-module regfile(Instr_IO_cpu_sig reg_if);
+module regfile(Instr_IO reg_if);
 	logic	[4:0] 	rs1;
 	logic 	[4:0] 	rs2;
 	logic 	[4:0] 	rd;

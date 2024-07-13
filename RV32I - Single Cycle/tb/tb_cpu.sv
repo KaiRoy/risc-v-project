@@ -8,10 +8,7 @@ logic [31:0] pc;
 logic [31:0] x31;
 
 
-
-Instr_IO_cpu_sig signals (.*);
-
-CPU ins (signals);
+CPU ins (.*);
 
 initial begin 
 	clk = 0;
