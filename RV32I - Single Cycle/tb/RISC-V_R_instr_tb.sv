@@ -35,8 +35,8 @@ module tb();
     assign rd = bus.regdata_R;
 
 	// Variables
-    b_func func;
-    assign func = b_func'(idata[14:12]);
+    r_fun func;
+    assign func = r_func'({bus.idata[30], bus.idata[25], bus.idata[14:12]});
 
 	// Instantiate the module
     B_type iDUT(bus.B_type_io_ports);
