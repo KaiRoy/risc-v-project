@@ -154,7 +154,7 @@ module tb;
 		imm=32'd3;
 		idata[30] = 1;
 		#1 display_state();
-		display("test: %d\n", (rv1 >>> imm[4:0]));
+		$display("test: %d\n", (rv1 >>> imm[4:0]));
 		if (rd == (rv1 >>> imm[4:0]))
 			display_pass("PASS");
 		else 
