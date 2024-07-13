@@ -6,6 +6,8 @@
 ** Date: 11/21/2023
 ** Description: Testbench for the RISC-V_R_instr_tb.sv file (WIP)
 ****************************************************/
+`timescale 1ns / 1ps
+import riscv_pkg::*;
 
 module tb();
 	// Base Vars
