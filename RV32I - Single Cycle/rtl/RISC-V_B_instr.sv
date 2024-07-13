@@ -41,8 +41,8 @@ module B_type(Instr_IO.B_type_io_ports bus);
             BNE:  pc = (rs1 != rs2)     ? (iaddr+imm) : (iaddr+4);
             BLT:  pc = (rs1 < rs2)      ? (iaddr+imm) : (iaddr+4);
             BGE:  pc = (rs1 >= rs2)     ? (iaddr+imm) : (iaddr+4);
-            BGEU: pc = (u_rs1 < u_rs2)  ? (iaddr+imm) : (iaddr+4);
-            BLTU: pc = (u_rs1 >= u_rs2) ? (iaddr+imm) : (iaddr+4);
+            BLTU: pc = (u_rs1 < u_rs2)  ? (iaddr+imm) : (iaddr+4);
+            BGEU: pc = (u_rs1 >= u_rs2) ? (iaddr+imm) : (iaddr+4);
 		    default: ;
 		endcase
 	 end
