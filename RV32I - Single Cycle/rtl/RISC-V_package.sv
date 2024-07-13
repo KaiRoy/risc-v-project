@@ -59,13 +59,13 @@ package riscv_pkg;
 		LH  = 3'b001,
 		LW  = 3'b010,
 		LBU = 3'b011,
-		LHU  = 3'b100,
+		LHU  = 3'b100
 	} l_func;
 
 	typedef enum logic [2:0] { //instr[30, 25, 14:12]
 		SB  = 3'b000,
 		SH  = 3'b001,
-		SW  = 3'b010,
+		SW  = 3'b010
 	} s_func;
 
 endpackage
