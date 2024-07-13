@@ -37,7 +37,7 @@ module R_type(Instr_IO.R_type_io_ports bus);
         unique case(func)
             ADD:  rd = rs1+rs2;
             SUB:  rd = rs1-rs2;
-            SLL:  rd = rs1<<rs2[4:0];
+            SLL:  rd = rs1<<rs2[4:0];		//Check this
             SLT:  rd = rs1<rs2;
             SLTU: rd = u_rs1<u_rs2;
             XOR:  rd = rs1^rs2;

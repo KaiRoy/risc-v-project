@@ -7,45 +7,166 @@
 ** Description: Testbench for the RISC-V_R_instr_tb.sv file (WIP)
 ****************************************************/
 
-module tb_R_ins;
-logic [31:0] instr;
-int in1;
-int in2;
-logic [31:0] out;
+module tb();
+	// Base Vars
+	logic clk;
+	logic reset;
+	logic [31:0] iaddr;  
+	logic [31:0] pc;     
+	logic [31:0] x31;
 
-//rs0=4'b0000,rs1=4'b1000,rs2=4'b0001,rs3=4'b0010,rs4=4'b0011,rs5=4'b0100,rs6=4'b0101,rs7=4'b1101,rs8=4'b0110,rs9=4'b0111
+	// Inputs
+    reg [31:0] idata;
+    logic signed [31:0] imm, rv1, rv2;
 
-R_type ins1 (.*); 
-initial begin
-instr=32'd0;in1=32'd415;in2=32'd60;#1;          //add 0000
-$display("output --> %d instruction in bit field [30] && [14:12]--> %b",out,{instr[30],instr[14:12]});
+	// Outputs
+	logic [31:0] rd;
 
-instr=32'd1073741824;in1=32'd6553;in2=32'd653;#1; //sub 1000 
-$display("output --> %d instruction in bit field [30] && [14:12]--> %b",out,{instr[30],instr[14:12]});
+	// Interface
+    Instr_IO bus(.*);
 
-instr=32'd4096;in1=32'd288;in2=32'd349;#1;      //sll '<<'0001 
-$display("output --> %d instruction in bit field [30] && [14:12]--> %b",out,{instr[30],instr[14:12]});
+	// Aliases
+    assign bus.idata = idata;
+    assign bus.iaddr = iaddr;
+    assign bus.imm = imm;
+    assign bus.rv1 = rv1;
+    assign bus.rv2 = rv2;
 
-instr=32'd8192;in1=32'd696;in2=32'd623;#1;     //slt '<' signed 0010 
-$display("output --> %d instruction in bit field [30] && [14:12]--> %b",out,{instr[30],instr[14:12]});
+    assign rd = bus.regdata_R;
 
-instr=32'd12288;in1=32'd447;in2=32'd726;#1;     //sltu '<' unsigned 0011 
-$display("output --> %d instruction in bit field [30] && [14:12]--> %b",out,{instr[30],instr[14:12]});
+	// Variables
+    b_func func;
+    assign func = b_func'(idata[14:12]);
 
-instr=32'd16384;in1=32'd696;in2=32'd939;#1;     //xor '^' 0100 
-$display("output --> %d instruction in bit field [30] && [14:12]--> %b",out,{instr[30],instr[14:12]});
+	// Instantiate the module
+    B_type iDUT(bus.B_type_io_ports);
 
-instr=32'd536891392;in1=32'd147;in2=32'd194;#1; // srl '>>' 0101
-$display("output --> %d instruction in bit field [30] && [14:12]--> %b",out,{instr[30],instr[14:12]});
+	// Display System
+    function void display_state;
+        $display("Instruction: %0s\nrv1 = %d\trv2 = %d\nrd: %d\n", 
+        iaddr, func.name(), imm, rv1, rv2, rd);
+    endfunction
+    function void display_b_txt(string str);
+        $display("\n%c[1;34m",27);
+        $write(str);
+        $display("%c[0m\n",27);
+    endfunction
+	function void display_pass(string str);
+		$write("%c[1;31m",27);
+        $write(str);
+        $write("%c[0m\n\n",27);
+	endfunction
 
-instr=32'd1073762304;in1=32'd848;in2=32'd325;#1;  //sra '>>>' 1101
-$display("output --> %d instruction in bit field [30] && [14:12]--> %b",out,{instr[30],instr[14:12]});
+	initial begin
+		#10 //ADD
+		display_b_txt("Test 1: ADD");
+		$cast({bus.idata[30], bus.idata[25], bus.idata[14:12]}, ADD);
+		rv1=32'd415;
+		rv2=32'd60;
+		#1 display_state();
+		if (rd == (rv1 + rv2))
+			display_pass("PASS");
+		else 
+			display_pass("FAIL");
 
-instr=32'd20480;in1=32'd378;in2=32'd960;#1; // or '|' 0101
-$display("output --> %d instruction in bit field [30] && [14:12]--> %b",out,{instr[30],instr[14:12]});
+		#10 //SUB
+		display_b_txt("Test 2: SUB");
+		$cast({bus.idata[30], bus.idata[25], bus.idata[14:12]}, SUB);
+		rv1=32'd6553;
+		rv2=32'd653;
+		#1 display_state();
+		if (rd == (rv1 - rv2))
+			display_pass("PASS");
+		else 
+			display_pass("FAIL");
 
-instr=32'd28672;in1=32'd404;in2=32'd900;#1;  //and '&' 0111
-$display("output --> %d instruction in bit field [30] && [14:12]--> %b",out,{instr[30],instr[14:12]});
-end
+		#10 //SLL
+		display_b_txt("Test 3: SLL");
+		$cast({bus.idata[30], bus.idata[25], bus.idata[14:12]}, SLL);
+		rv1=32'd288;
+		rv2=32'd349;
+		#1 display_state();
+		if (rd == (rv1 << rv2[4:0]))
+			display_pass("PASS");
+		else 
+			display_pass("FAIL");
 
-endmodule : tb_R_ins
+		#10 //SLT
+		display_b_txt("Test 4: SLT");
+		$cast({bus.idata[30], bus.idata[25], bus.idata[14:12]}, SLT);
+		rv1=32'd696;
+		rv2=32'd623;
+		#1 display_state();
+		if (rd == (rv1 < rv2))
+			display_pass("PASS");
+		else 
+			display_pass("FAIL");
+
+		#10 //SLTU
+		display_b_txt("Test 5: SLTU");
+		$cast({bus.idata[30], bus.idata[25], bus.idata[14:12]}, SLTU);
+		rv1=32'd447;
+		rv2=32'd726;
+		#1; display_state();
+		if (rd == (unsigned'(rv1) < unsigned'(rv2)))
+			display_pass("PASS");
+		else 
+			display_pass("FAIL");
+
+		#10 //XOR
+		display_b_txt("Test 6: XOR");
+		$cast({bus.idata[30], bus.idata[25], bus.idata[14:12]}, XOR);
+		rv1=32'd696;
+		rv2=32'd939;
+		#1 display_state();
+		if (rd == (rv1 ^ rv2))
+			display_pass("PASS");
+		else 
+			display_pass("FAIL");
+
+		#10 //SRL
+		display_b_txt("Test 7: SRL");
+		$cast({bus.idata[30], bus.idata[25], bus.idata[14:12]}, SRL);
+		rv1=32'd147;
+		rv2=32'd194;
+		#1 display_state();
+		if (rd == (rv1 >> rv2[4:0]))
+			display_pass("PASS");
+		else 
+			display_pass("FAIL");
+
+		#10 //SRA
+		display_b_txt("Test 8: SRA");
+		$cast({bus.idata[30], bus.idata[25], bus.idata[14:12]}, SRA);
+		rv1=32'd848;
+		rv2=32'd325;
+		#1 display_state();
+		if (rd == (rv1 >>> rv2[4:0]))
+			display_pass("PASS");
+		else 
+			display_pass("FAIL");
+
+		#10 //OR
+		display_b_txt("Test 9: OR");
+		$cast({bus.idata[30], bus.idata[25], bus.idata[14:12]}, OR);
+		rv1=32'd378;
+		rv2=32'd960;
+		#1 display_state();
+		if (rd == (rv1 | rv2))
+			display_pass("PASS");
+		else 
+			display_pass("FAIL");
+
+		#10 //AND
+		display_b_txt("Test 10: AND");
+		$cast({bus.idata[30], bus.idata[25], bus.idata[14:12]}, AND);
+		rv1=32'd404;
+		rv2=32'd900;
+		#1 display_state();
+		if (rd == (rv1 & rv2))
+			display_pass("PASS");
+		else 
+			display_pass("FAIL");
+	end
+
+endmodule : tb
