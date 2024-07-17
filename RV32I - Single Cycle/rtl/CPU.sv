@@ -64,8 +64,7 @@ module CPU (
 		instr.pc 		= instr.iaddr+4;
 	endfunction	
 
-	function void i_set(
-		inout Instr_IO_cpu_sig instr);
+	function void i_set;
 		instr.imm 		= {{20{instr.idata[31]}},instr.idata[31:20]};
 		instr.wer		= 1;
 		instr.we		= 4'b0;
@@ -73,9 +72,7 @@ module CPU (
 		instr.pc 		= instr.iaddr+4;
 	endfunction	
 
-	function void l_set(
-		inout Instr_IO_cpu_sig instr
-		);
+	function void l_set;
 		instr.imm 		= {{20{instr.idata[31]}},instr.idata[31:20]};
 		instr.wer		= 1;
 		instr.we		= 4'b0;
@@ -84,9 +81,7 @@ module CPU (
 		instr.pc 		= instr.iaddr+4;
 	endfunction	
 
-	function void s_set(
-		inout Instr_IO_cpu_sig instr
-		);
+	function void s_set;
 		instr.imm 		= {{20{instr.idata[31]}},instr.idata[31:25],instr.idata[11:7]};
 		instr.wer		= 0;
 		instr.daddr 	= instr.rv1+instr.imm;
@@ -99,18 +94,14 @@ module CPU (
 		endcase
 	endfunction	
 
-	function void b_set(
-		inout Instr_IO_cpu_sig instr
-		);
+	function void b_set;
 		instr.imm 		= {{20{instr.idata[31]}},instr.idata[31],instr.idata[7],instr.idata[30:25],instr.idata[11:8],1'b0};
 		instr.wer		= 0;
 		instr.we		= 4'b0;
 		instr.pc 		= instr.iaddr_val;
 	endfunction	
 
-	function void jalr_set(
-		inout Instr_IO_cpu_sig instr
-		);
+	function void jalr_set;
 		instr.imm 		= {{20{instr.idata[31]}},instr.idata[31:20]};
 		instr.wer 		= 1;
 		instr.we 		= 4'b0;
@@ -118,9 +109,7 @@ module CPU (
 		instr.pc 		= (instr.rv1+instr.imm) & 32'hfffffffe;
 	endfunction
 
-	function void jal_set(
-		inout Instr_IO_cpu_sig instr
-		);
+	function void jal_set;
 		instr.imm 		= {{11{instr.idata[31]}},instr.idata[31],instr.idata[19:12],instr.idata[20],instr.idata[30:21],1'b0};
 		instr.pc 		= (instr.iaddr+instr.imm);
 		instr.wer 		= 1;
@@ -128,9 +117,7 @@ module CPU (
 		instr.regdata 	= instr.iaddr+4;
 	endfunction
 
-	function void auipc_set(
-		inout Instr_IO_cpu_sig instr
-		);
+	function void auipc_set;
 		instr.imm 		= {instr.idata[31:12],12'b0};
 		instr.wer 		= 1;
 		instr.we 		= 4'b0;
@@ -138,9 +125,7 @@ module CPU (
 		instr.pc 		= instr.iaddr+4;
 	endfunction
 
-	function void lui_set(
-		inout Instr_IO_cpu_sig instr
-		);
+	function void lui_set;
 		instr.imm 		= {instr.idata[31:12],12'b0};
 		instr.wer		= 1;
 		instr.we		= 4'b0;
