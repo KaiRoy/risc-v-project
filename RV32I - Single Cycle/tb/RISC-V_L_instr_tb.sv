@@ -142,7 +142,7 @@ module tb;
 		
 		#10 // Test case 5: LHU
         display_b_txt("Test 6: LHU");
-        $cast(idata[14:12], LH); // Set opcode to LHU
+        $cast(idata[14:12], LHU); // Set opcode to LHU
 
         #1; // Wait for a moment
 
