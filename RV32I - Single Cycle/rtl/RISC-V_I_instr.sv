@@ -38,7 +38,12 @@ module I_type(Instr_IO.I_type_io_ports bus);
 			ORI:	rd = rs1 | imm;
 			ANDI:	rd = rs1 & imm;
 			SLLI:  	rd = rs1<<imm[4:0];
-            SRLI: 	rd = bus.idata[30] ? (rs1>>imm[4:0]) : (rs1>>>imm[4:0]); //srli || srai
+            SRLI: 	begin 
+				if (bus.idata[30])	 //srli || srai
+					rd = (rs1>>imm[4:0]);
+				else	
+					rd = (rs1>>>imm[4:0]);
+			end
 		    default: ;
 		endcase
 
