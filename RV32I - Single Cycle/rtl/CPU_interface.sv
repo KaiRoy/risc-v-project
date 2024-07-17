@@ -17,7 +17,7 @@ interface  Instr_IO (
 	logic 	[31:0] 	regdata;
 
 	// Interval Data Variables
-	wire 	[31:0] 	regdata_R, regdata_I;	//??Interval??
+	logic 	[31:0] 	regdata_R, regdata_I;	//??Interval??
 	wire 	[31:0] 	regdata_L, iaddr_val;	//??Interval??
 
 	// Address Breakdown
