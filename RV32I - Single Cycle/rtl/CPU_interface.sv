@@ -1,7 +1,9 @@
 interface  Instr_IO (
 	input 	logic 			clk,
+	input 	logic 			reset,
 	output 	logic [31:0] 	iaddr,	//Stores current Program counter value
-    output 	logic [31:0] 	x31
+    output 	logic [31:0]  	pc,
+	output 	logic [31:0] 	x31
 	);
 
 	// Control Signals
