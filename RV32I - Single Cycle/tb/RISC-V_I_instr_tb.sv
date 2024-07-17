@@ -156,7 +156,7 @@ module tb;
 		#1 display_state();
 		
 		$display("regdata_I = %32b\n", bus.regdata_I);
-		$display("Actual: %32b\n", (rv1 >>> imm[4:0]));
+		$display("Expected: %32b\n", (rv1 >>> imm[4:0]));
 
 		if (rd == (rv1 >>> imm[4:0]))
 			display_pass("PASS");

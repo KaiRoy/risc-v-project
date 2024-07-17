@@ -42,8 +42,10 @@ module I_type(Instr_IO.I_type_io_ports bus);
 		    default: ;
 		endcase
 
-		if (func == SRLI)
-			$display("Internal = %32b\n", rd);
+		if (func == SRLI) begin
+			$display("Internal Expected = %32b\n", rs1>>>imm[4:0]);
+			$display("Internal Actual = %32b\n", rd);
+		end
 	end
 
 endmodule : I_type
