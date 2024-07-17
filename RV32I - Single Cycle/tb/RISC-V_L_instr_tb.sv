@@ -129,6 +129,7 @@ module tb;
 		#10 // Test case 4: LBU
         display_b_txt("Test 5: LBU");
         $cast(idata[14:12], LBU); // Set opcode to LBU
+		drdata 	= 'hf1f2f3f4; // Set data in memory
 
         #1; // Wait for a moment
 
