@@ -17,7 +17,7 @@ end
 always #5 clk = ~clk;
 
 initial begin
-	$monitor($time, "\tx31: %d\tiaddr: %d\tpc: %d\tinstr: %b", x31, iaddr, pc, ins.instruction.idata);
+	$monitor($time, "\tx31: %d\tiaddr: %d\tpc: %d\tinstr: %b", x31, iaddr, pc, ins.instr.idata);
 	reset=1; #12;
 	reset=0;
 	#1000;
