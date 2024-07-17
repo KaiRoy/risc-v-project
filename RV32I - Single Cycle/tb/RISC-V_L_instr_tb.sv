@@ -76,8 +76,8 @@ module tb;
         #10 // Test case 1: LB
 		display_b_txt("Test 1: LB");
         $cast(idata[14:12], LB); // Set opcode to LB
-        daddr 	= 8'h00100002; // Set data address
-        drdata 	= 8'hf1f2f3f4; // Set data in memory
+        daddr 	= 'h00100002; // Set data address
+        drdata 	= 'hf1f2f3f4; // Set data in memory
 
         #1; // Wait for a moment
 
@@ -89,7 +89,7 @@ module tb;
 	
 		//Test case 2: for LB
 		display_b_txt("Test 2: LB");
-		drdata = 8'h1f2f3f4f;
+		drdata = 'h1f2f3f4f;
         #1; // Wait for a moment
 
         // Display results	
