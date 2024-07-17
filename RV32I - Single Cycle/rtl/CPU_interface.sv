@@ -24,7 +24,7 @@ interface  Instr_IO (
 	logic 	[4:0] 	rd,rs1,rs2;
 	logic 	[31:0] 	imm;
 	
-	logic 	[31:0] 	rv1, rv2;		//??Interval??
+	logic signed [31:0] 	rv1, rv2;		//??Interval??
 
 
 	modport R_type_io_ports (input idata, input rv1, input rv2, output regdata_R); 
