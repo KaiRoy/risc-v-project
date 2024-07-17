@@ -15,7 +15,7 @@ module imem(Instr_IO imem_if);
 
     logic [31:0] i_arr[0:31];
     initial begin
-		$readmemb("../tb/imem1_ini.mem",i_arr);
+		$readmemb("./tb/imem1_ini.mem",i_arr);
 		//$readmemh("imem5_ini.mem",i_arr);
 	end
 
