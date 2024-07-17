@@ -9,39 +9,71 @@
 import riscv_pkg::*;
 
 module tb;
-	
-	
+	// Base Vars
+	logic clk;
+	logic reset;
+	logic [31:0] iaddr;  
+	logic [31:0] pc;     
+	logic [31:0] x31;
+
 	// Inputs
-	logic [31:0] instr;
+    reg [31:0] idata;
 	logic [31:0] daddr;
 
 	// Outputs
 	logic [3:0] we;
 
+	// Aliases
+    assign bus.idata = idata;
+    assign bus.iaddr = iaddr;
+	assign bus.daddr = daddr;
+
+    assign we = bus.we_S;
+
+	s_func func;
+	assign func = s_func'({bus.idata[30], bus.idata[25], bus.idata[14:12]})
 
 
 	// Instantiate the module
 	S_type iDUT (bus.S_type_io_ports);
 
-	// Initial block for test stimulus
+	// Display System
+    function void display_state;
+        $display("Instruction: %0s\nwe = %d\n", 
+        func.name(), we);
+    endfunction
+    function void display_b_txt(string str);
+        $display("\n%c[1;34m",27);
+        $write(str);
+        $display("%c[0m\n",27);
+    endfunction
+	function void display_pass(string str);
+		$write("%c[1;31m",27);
+        $write(str);
+        $write("%c[0m\n\n",27);
+	endfunction
+
+	
+	// Stimulus Block
 	initial begin
-		instr = 32'b00000000000000000000000000000000;
-		daddr=32'd1;
+		#10; //SB
+		$cast({idata[30], idata[25], idata[14:12]}, SB);
+		daddr = 1;
 		#1;
-
-		$display("%d",we);
-		instr = 32'b00000000000000000010000000000000;
-		daddr=32'd1;
+		display_state;
+		
+		#10; //SH
+		$cast({idata[30], idata[25], idata[14:12]}, SH);
+		daddr = 1;
 		#1;
-
-		$display("%d",we);
-		instr = 32'b00000000000000000100000000000000;
-		daddr=32'd1;
+		display_state;
+		
+		#10; //SW
+		$cast({idata[30], idata[25], idata[14:12]}, SW);
+		daddr = 1;
 		#1;
-
-		$display("%d",we);
+		display_state;
 
 		#5; $finsih;
 	end
-	$finish
 endmodule : tb

@@ -25,7 +25,7 @@ module S_type(Instr_IO.S_type_io_ports bus_s);
 	assign bus_s.we_S	= we_S;
 
 	s_func func;
-	func = s_func'(instr);
+	assign func = s_func'(instr);
 
 	always_comb begin   
         case(func)
