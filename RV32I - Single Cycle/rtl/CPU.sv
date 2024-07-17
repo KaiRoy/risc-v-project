@@ -57,11 +57,12 @@ module CPU (
 
 
 	// Functions
-	function automoatic void r_set (ref Instr_IO instr);
+	function void automoatic r_set (ref Instr_IO instr);
 		instr.wer 		= 1;
 		instr.we 		= 4'b0;
 		instr.regdata 	= instr.regdata_R;
 		instr.pc 		= instr.iaddr+4;
+		return;
 	endfunction	
 
 	// function void i_set;
