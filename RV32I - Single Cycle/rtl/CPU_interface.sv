@@ -26,6 +26,12 @@ interface  Instr_IO (
 	
 	logic signed [31:0] 	rv1, rv2;		//??Interval??
 
+	function r_set;
+		wer = 1;
+		we = 4'b0;
+		regdata = regdata_R;
+		pc = addr+4;
+	endfunction
 
 	modport R_type_io_ports (input idata, input rv1, input rv2, output regdata_R); 
 	modport I_type_io_ports (input idata, input rv1, input imm, output regdata_I);

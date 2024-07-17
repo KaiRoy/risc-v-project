@@ -31,15 +31,15 @@ module CPU (
 		instr.rs1 	= instr.idata[19:15];
 		instr.rs2 	= instr.idata[24:20];
         case(op_code'(instr.idata[6:0]))
-            RTYPE: 	r_set(instr);
-            ITYPE:	i_set(instr);
-            LTYPE:	l_set(instr);
-            STYPE:	s_set(instr);
-			BTYPE:	b_set(instr);
-			JALR:	jalr_set(instr);
-			JAL:	jal_set(instr);
-			AUIPC:	auipc_set(instr);
-			LUI: 	lui_set(instr);
+            RTYPE: 	instr.r_set();
+            ITYPE:	$display("Instruction Not Implemented\n"); \\i_set(instr);
+            LTYPE:	$display("Instruction Not Implemented\n"); \\l_set(instr);
+            STYPE:	$display("Instruction Not Implemented\n"); \\s_set(instr);
+			BTYPE:	$display("Instruction Not Implemented\n"); \\b_set(instr);
+			JALR:	$display("Instruction Not Implemented\n"); \\jalr_set(instr);
+			JAL:	$display("Instruction Not Implemented\n"); \\jal_set(instr);
+			AUIPC:	$display("Instruction Not Implemented\n"); \\auipc_set(instr);
+			LUI: 	$display("Instruction Not Implemented\n"); \\lui_set(instr);
 		endcase
     end
 
@@ -57,13 +57,13 @@ module CPU (
 
 
 	// Functions
-	function void automoatic r_set (ref Instr_IO instr);
-		instr.wer 		= 1;
-		instr.we 		= 4'b0;
-		instr.regdata 	= instr.regdata_R;
-		instr.pc 		= instr.iaddr+4;
-		return;
-	endfunction	
+	// function void automoatic r_set(ref Instr_IO instr);
+	// 	instr.wer 		= 1;
+	// 	instr.we 		= 4'b0;
+	// 	instr.regdata 	= instr.regdata_R;
+	// 	instr.pc 		= instr.iaddr+4;
+	// 	return;
+	// endfunction	
 
 	// function void i_set;
 	// 	instr.imm 		= {{20{instr.idata[31]}},instr.idata[31:20]};
