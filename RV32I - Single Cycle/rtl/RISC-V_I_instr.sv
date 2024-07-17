@@ -39,10 +39,13 @@ module I_type(Instr_IO.I_type_io_ports bus);
 			ANDI:	rd = rs1 & imm;
 			SLLI:  	rd = rs1<<imm[4:0];
             SRLI: 	begin 
-				if (bus.idata[30])	 //srli || srai
+				if (!bus.idata[30])	 //srli || srai
 					rd = (rs1>>imm[4:0]);
-				else	
+					$display("SRLI\n");
+				else begin
 					rd = (rs1>>>imm[4:0]);		//The 3 MSB are resulting in 000 and I do not know why
+					$display("SRAI\n");
+				end
 			end
 		    default: ;
 		endcase
