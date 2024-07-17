@@ -43,7 +43,7 @@ module tb;
 
 	// Display System
     function void display_state;
-        $display("Instruction: %0s\nrv1 = %d\timm = %d\nrd: %32b\n", 
+        $display("Instruction: %0s\nrv1 = %32b\timm = %32b\nrd: %32b\n", 
         func.name(), rv1, imm, rd);
     endfunction
     function void display_b_txt(string str);
