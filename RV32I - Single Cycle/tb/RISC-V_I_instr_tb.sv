@@ -43,7 +43,7 @@ module tb;
 
 	// Display System
     function void display_state;
-        $display("Instruction: %0s\nrv1 = %d\timm = %d\nrd: %d\n", 
+        $display("Instruction: %0s\nrv1 = %d\timm = %d\nrd: %32b\n", 
         func.name(), rv1, imm, rd);
     endfunction
     function void display_b_txt(string str);
@@ -155,8 +155,8 @@ module tb;
 		idata[30] = 1;
 		#1 display_state();
 		
-		$display("regdata_I = %d\n", bus.regdata_I);
-		$display("Actual: %d\n", (rv1 >>> imm[4:0]));
+		$display("regdata_I = %32b\n", bus.regdata_I);
+		$display("Actual: %32b\n", (rv1 >>> imm[4:0]));
 
 		if (rd == (rv1 >>> imm[4:0]))
 			display_pass("PASS");
