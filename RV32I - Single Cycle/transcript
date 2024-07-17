@@ -1,0 +1,120 @@
+# vsim tb -c -do "run -all" 
+# Start time: 06:35:38 on Jul 17,2024
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# //  Questa Sim-64
+# //  Version 10.6b linux_x86_64 May 25 2017
+# //
+# //  Copyright 1991-2017 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.riscv_pkg(fast)
+# Loading work.RISC2dV_I_instr_tb_sv_unit(fast)
+# Loading work.tb(fast)
+# Loading work.RISC2dV_I_instr_sv_unit(fast)
+# Loading work.I_type(fast)
+# run -all
+# 
+# [1;34m
+# Test 1: ADDI[0m
+# 
+# Instruction: ADDI
+# rv1 =         617	imm =         511
+# rd:        1128
+# 
+# [1;31mPASS[0m
+# 
+# 
+# [1;34m
+# Test 2: SLTI[0m
+# 
+# Instruction: SLTI
+# rv1 =         989	imm =         295
+# rd:           0
+# 
+# [1;31mPASS[0m
+# 
+# 
+# [1;34m
+# Test 3: SLTIU[0m
+# 
+# Instruction: SLTIU
+# rv1 =         980	imm =         533
+# rd:           0
+# 
+# [1;31mPASS[0m
+# 
+# 
+# [1;34m
+# Test 4: XORI[0m
+# 
+# Instruction: XORI
+# rv1 =         679	imm =          91
+# rd:         764
+# 
+# [1;31mPASS[0m
+# 
+# 
+# [1;34m
+# Test 5: ORI[0m
+# 
+# Instruction: ORI
+# rv1 =         234	imm =         592
+# rd:         762
+# 
+# [1;31mPASS[0m
+# 
+# 
+# [1;34m
+# Test 6: ANDI[0m
+# 
+# Instruction: ANDI
+# rv1 =         503	imm =         746
+# rd:         226
+# 
+# [1;31mPASS[0m
+# 
+# 
+# [1;34m
+# Test 7: SLLI[0m
+# 
+# Instruction: SLLI
+# rv1 =         843	imm =         750
+# rd:    13811712
+# 
+# [1;31mPASS[0m
+# 
+# 
+# [1;34m
+# Test 8: SRLI[0m
+# 
+# Instruction: SRLI
+# rv1 =         949	imm =           3
+# rd:         118
+# 
+# [1;31mPASS[0m
+# 
+# 
+# [1;34m
+# Test 9: SRAI[0m
+# 
+# Instruction: SRLI
+# rv1 =        -949	imm =           3
+# rd:   536870793
+# 
+# test:        -119
+# 
+# [1;31mFAIL[0m
+# 
+# ** Note: $finish    : ./tb/RISC-V_I_instr_tb.sv(164)
+#    Time: 104 ns  Iteration: 0  Instance: /tb
+# End time: 06:35:39 on Jul 17,2024, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0

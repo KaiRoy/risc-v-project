@@ -1,0 +1,320 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/u/roykai/Documents/Projects/risc-v-sv-project/RV32I - Single Cycle
+T_opt
+!s110 1721223338
+V:4[`YkQkU;@GGl;nne5VZ2
+04 2 4 work tb fast 0
+=1-525400b63b2a-6697c8aa-3d8c9-49f0
+o-quiet -auto_acc_if_foreign -work work
+Z1 tCvgOpt 0
+n@_opt
+OL;O;10.6b;65
+vB_type
+Z2 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
+Z3 DXx4 work 9 riscv_pkg 0 22 ^h5HmETLmacND`]g5>3]]1
+DXx4 work 23 RISC2dV_B_instr_sv_unit 0 22 ?G?[Y[]zCPfednDBLlHLm1
+Z4 VDg1SIo80bB@j0V0VzS_@n1
+r1
+!s85 0
+31
+!i10b 1
+!s100 <DfDkl8n0K55bAfc]N7Ch0
+I2j@7YTC_K?SD]9IO<93l91
+!s105 RISC2dV_B_instr_sv_unit
+S1
+R0
+Z5 w1720898645
+Z6 8./rtl/RISC-V_B_instr.sv
+Z7 F./rtl/RISC-V_B_instr.sv
+L0 15
+Z8 OL;L;10.6b;65
+Z9 !s108 1720899094.000000
+Z10 !s107 ./rtl/RISC-V_B_instr.sv|./tb/RISC-V_B_instr_tb.sv|./rtl/CPU_interface.sv|./rtl/RISC-V_package.sv|
+Z11 !s90 ./rtl/RISC-V_package.sv|./rtl/CPU_interface.sv|./tb/RISC-V_B_instr_tb.sv|./rtl/RISC-V_B_instr.sv|
+!i113 0
+Z12 o-L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R1
+n@b_type
+vI_type
+R2
+R3
+DXx4 work 23 RISC2dV_I_instr_sv_unit 0 22 mL>oUR8e^VQeH5NERU8MU3
+R4
+r1
+!s85 0
+31
+!i10b 1
+!s100 `2lYcNAfCn[^IUio[ma_:1
+Im3Z_06P]W7cM3=4>=5?>N1
+!s105 RISC2dV_I_instr_sv_unit
+S1
+R0
+Z13 w1720903623
+Z14 8./rtl/RISC-V_I_instr.sv
+Z15 F./rtl/RISC-V_I_instr.sv
+Z16 L0 14
+R8
+Z17 !s108 1721223333.000000
+Z18 !s107 ./rtl/RISC-V_I_instr.sv|./tb/RISC-V_I_instr_tb.sv|./rtl/CPU_interface.sv|./rtl/RISC-V_package.sv|
+Z19 !s90 ./rtl/RISC-V_package.sv|./rtl/CPU_interface.sv|./tb/RISC-V_I_instr_tb.sv|./rtl/RISC-V_I_instr.sv|
+!i113 0
+R12
+R1
+n@i_type
+YInstr_IO
+R2
+Z20 !s110 1721223333
+!i10b 1
+!s100 Kh1hZCz9d]]nH9Ta;dWJ]0
+IVY[?:@6DD:RBWNQ]1ee]l1
+R4
+!s105 CPU_interface_sv_unit
+S1
+R0
+w1721223330
+8./rtl/CPU_interface.sv
+F./rtl/CPU_interface.sv
+L0 1
+R8
+r1
+!s85 0
+31
+R17
+R18
+R19
+!i113 0
+R12
+R1
+n@instr_@i@o
+vR_type
+R2
+R3
+DXx4 work 23 RISC2dV_R_instr_sv_unit 0 22 T1O@3JQ1:o]AEb^mhSfhl3
+R4
+r1
+!s85 0
+31
+!i10b 1
+!s100 ^OG=`fC>KgUGnIWE?7OT12
+IVTXYAb;SAAk=[5ffjdSEV2
+!s105 RISC2dV_R_instr_sv_unit
+S1
+R0
+Z21 w1720900336
+Z22 8./rtl/RISC-V_R_instr.sv
+Z23 F./rtl/RISC-V_R_instr.sv
+R16
+R8
+Z24 !s108 1720900786.000000
+Z25 !s107 ./rtl/RISC-V_R_instr.sv|./tb/RISC-V_R_instr_tb.sv|./rtl/CPU_interface.sv|./rtl/RISC-V_package.sv|
+Z26 !s90 ./rtl/RISC-V_package.sv|./rtl/CPU_interface.sv|./tb/RISC-V_R_instr_tb.sv|./rtl/RISC-V_R_instr.sv|
+!i113 0
+R12
+R1
+n@r_type
+XRISC2dV_B_instr_sv_unit
+R2
+R3
+V?G?[Y[]zCPfednDBLlHLm1
+r1
+!s85 0
+31
+!i10b 1
+!s100 XI9HhnJOk<9m;YWJm:UgK2
+I?G?[Y[]zCPfednDBLlHLm1
+!i103 1
+S1
+R0
+R5
+R6
+R7
+L0 12
+R8
+R9
+R10
+R11
+!i113 0
+R12
+R1
+n@r@i@s@c2d@v_@b_instr_sv_unit
+XRISC2dV_B_instr_tb_sv_unit
+R2
+R3
+Vn^^`K4LEUoN=IS73ezFbn3
+r1
+!s85 0
+31
+!i10b 1
+!s100 0Vl=b[NbWzK@QMBnHgVf>0
+In^^`K4LEUoN=IS73ezFbn3
+!i103 1
+S1
+R0
+w1720898270
+8./tb/RISC-V_B_instr_tb.sv
+F./tb/RISC-V_B_instr_tb.sv
+L0 9
+R8
+R9
+R10
+R11
+!i113 0
+R12
+R1
+n@r@i@s@c2d@v_@b_instr_tb_sv_unit
+XRISC2dV_I_instr_sv_unit
+R2
+R3
+VmL>oUR8e^VQeH5NERU8MU3
+r1
+!s85 0
+31
+!i10b 1
+!s100 ddeboKj``h?7Ub=^4Vnc;1
+ImL>oUR8e^VQeH5NERU8MU3
+!i103 1
+S1
+R0
+R13
+R14
+R15
+Z27 L0 11
+R8
+R17
+R18
+R19
+!i113 0
+R12
+R1
+n@r@i@s@c2d@v_@i_instr_sv_unit
+XRISC2dV_I_instr_tb_sv_unit
+R2
+R3
+V;@J_oCPlHS9?e5LAWZkAH3
+r1
+!s85 0
+31
+!i10b 1
+!s100 NRi33BLA6VL4lal4Blm7A1
+I;@J_oCPlHS9?e5LAWZkAH3
+!i103 1
+S1
+R0
+Z28 w1720903950
+Z29 8./tb/RISC-V_I_instr_tb.sv
+Z30 F./tb/RISC-V_I_instr_tb.sv
+L0 9
+R8
+R17
+R18
+R19
+!i113 0
+R12
+R1
+n@r@i@s@c2d@v_@i_instr_tb_sv_unit
+XRISC2dV_R_instr_sv_unit
+R2
+R3
+VT1O@3JQ1:o]AEb^mhSfhl3
+r1
+!s85 0
+31
+!i10b 1
+!s100 QeJo9bUU1m@=D7aZ[nk[Y2
+IT1O@3JQ1:o]AEb^mhSfhl3
+!i103 1
+S1
+R0
+R21
+R22
+R23
+R27
+R8
+R24
+R25
+R26
+!i113 0
+R12
+R1
+n@r@i@s@c2d@v_@r_instr_sv_unit
+XRISC2dV_R_instr_tb_sv_unit
+R2
+R3
+V0P4eWMTE^UY0oQh4E?65G0
+r1
+!s85 0
+31
+!i10b 1
+!s100 49B>ldY;zkQ^@Jc:CbMFc1
+I0P4eWMTE^UY0oQh4E?65G0
+!i103 1
+S1
+R0
+w1720900784
+8./tb/RISC-V_R_instr_tb.sv
+F./tb/RISC-V_R_instr_tb.sv
+L0 10
+R8
+R24
+R25
+R26
+!i113 0
+R12
+R1
+n@r@i@s@c2d@v_@r_instr_tb_sv_unit
+Xriscv_pkg
+R2
+R20
+!i10b 1
+!s100 <GSGzUd`Z0o9kdP1@3cZA2
+I^h5HmETLmacND`]g5>3]]1
+V^h5HmETLmacND`]g5>3]]1
+S1
+R0
+w1720897684
+8./rtl/RISC-V_package.sv
+F./rtl/RISC-V_package.sv
+L0 9
+R8
+r1
+!s85 0
+31
+R17
+R18
+R19
+!i113 0
+R12
+R1
+vtb
+R2
+R3
+DXx4 work 26 RISC2dV_I_instr_tb_sv_unit 0 22 ;@J_oCPlHS9?e5LAWZkAH3
+R4
+r1
+!s85 0
+31
+!i10b 1
+!s100 NU>RFFO8U4MabG=[QjaC11
+I;Iag;MV0oY15EibRN0hPX1
+!s105 RISC2dV_I_instr_tb_sv_unit
+S1
+R0
+R28
+R29
+R30
+R27
+R8
+R17
+R18
+R19
+!i113 0
+R12
+R1
