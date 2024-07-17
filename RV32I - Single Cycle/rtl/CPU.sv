@@ -33,7 +33,7 @@ module CPU (
         case(op_code'(instr.idata[6:0]))
             RTYPE: 	instr.r_set(); 
             ITYPE:	instr.i_set(); 
-            LTYPE:	instr.L_set(); 
+            LTYPE:	instr.l_set(); 
             STYPE:	instr.s_set(); 
 			BTYPE:	instr.b_set(); 
 			JALR:	instr.jalr_set(); 
