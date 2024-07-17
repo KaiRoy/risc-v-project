@@ -20,7 +20,7 @@ module dmem(Instr_IO dmem_if);
 
 	logic 	[7:0] 	m [0:127];
 	wire 	[31:0] 	add0,add1,add2,add3;
-	initial $readmemb("dmem_ini.mem",m);
+	initial $readmemb("../tb/dmem_ini.mem",m);
 
 	assign add0 = (daddr & 32'hfffffffc)+ 32'h00000000;
 	assign add1 = (daddr & 32'hfffffffc)+ 32'h00000001;
