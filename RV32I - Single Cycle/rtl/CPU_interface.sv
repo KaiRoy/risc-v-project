@@ -28,13 +28,7 @@ interface  Instr_IO (
 	
 	logic signed [31:0] 	rv1, rv2;		//??Interval??
 
-	function r_set;
-		wer = 1;
-		we = 4'b0;
-		regdata = regdata_R;
-		pc = iaddr+4;
-	endfunction
-
+	// Module Ports
 	modport R_type_io_ports (input idata, input rv1, input rv2, output regdata_R); 
 	modport I_type_io_ports (input idata, input rv1, input imm, output regdata_I);
 	modport L_type_io_ports (input idata, input daddr, input drdata, output regdata_L);
@@ -43,5 +37,81 @@ interface  Instr_IO (
 	modport imem_io_ports   (input iaddr, output idata);
 	modport dmem_io_ports   (input clk, input daddr, input dwdata, input we, output drdata);
 	modport regfile_io_ports(input clk, input rs1, input rs2, input rd, input regdata, input wer, output rv1, output rv2, output x31);
+
+	// Functions
+	function r_set;
+		wer 	= 1;
+		we 		= 4'b0;
+		regdata	= regdata_R;
+		pc 		= iaddr+4;
+	endfunction
+
+	function i_set;
+		imm 	= {{20{idata[31]}},idata[31:20]};
+		wer		= 1;
+		we		= 4'b0;
+		regdata = regdata_I;
+		pc 		= iaddr+4;
+	endfunction
+
+	function l_set;
+		imm 	= {{20{idata[31]}},idata[31:20]};
+		wer		= 1;
+		we		= 4'b0;
+		daddr 	= rv1+imm;    
+		regdata = regdata_L;
+		pc 		= iaddr+4;
+	endfunction
+
+	function s_set;
+		wer		= 0;
+		daddr 	= rv1+imm;
+		we 		= we_S;
+		pc 		= iaddr+4;
+		case(idata[14:12])
+			3'b000: dwdata = {rv2[7:0], rv2[7:0], rv2[7:0], rv2[7:0]};
+			3'b001: dwdata = {rv2[15:0], rv2[15:0]};
+			3'b010: dwdata = rv2;
+		endcase
+	endfunction
+
+	function b_set;
+		imm 	= {{20{idata[31]}},idata[31],idata[7],idata[30:25],idata[11:8],1'b0};
+		wer		= 0;
+		we		= 4'b0;
+		pc 		= iaddr_val;
+	endfunction
+
+	function jalr_set;
+		imm 	= {{20{idata[31]}},idata[31:20]};
+		wer 	= 1;
+		we 		= 4'b0;
+		regdata = iaddr+4;
+		pc 		= (rv1+imm) & 32'hfffffffe;
+	endfunction
+
+	function jal_set;
+		imm 	= {{11{idata[31]}},idata[31],idata[19:12],idata[20],idata[30:21],1'b0};
+		pc 		= (iaddr+imm);
+		wer 	= 1;
+		we 		= 4'b0;
+		regdata = iaddr+4;
+	endfunction
+
+	function auipc_set;
+		imm 	= {idata[31:12],12'b0};
+		wer 	= 1;
+		we 		= 4'b0;
+		regdata = iaddr+imm;
+		pc 		= iaddr+4;
+	endfunction
+
+	function lui_set;
+		imm 	= {idata[31:12],12'b0};
+		wer		= 1;
+		we		= 4'b0;
+		regdata = imm;
+		pc 		= instr.iaddr+4;	
+	endfunction
 
 endinterface

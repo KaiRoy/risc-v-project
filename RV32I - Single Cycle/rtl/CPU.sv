@@ -32,14 +32,14 @@ module CPU (
 		instr.rs2 	= instr.idata[24:20];
         case(op_code'(instr.idata[6:0]))
             RTYPE: 	instr.r_set(); 
-            ITYPE:	; //i_set(instr)
-            LTYPE:	; //l_set(instr);
-            STYPE:	; //s_set(instr);
-			BTYPE:	; //b_set(instr);
-			JALR:	; //jalr_set(instr);
-			JAL:	; //jal_set(instr);
-			AUIPC:	; //auipc_set(instr);
-			LUI: 	; //lui_set(instr);
+            ITYPE:	instr.i_set(); 
+            LTYPE:	instr.L_set(); 
+            STYPE:	instr.s_set(); 
+			BTYPE:	instr.b_set(); 
+			JALR:	instr.jalr_set(); 
+			JAL:	instr.jal_set(); 
+			AUIPC:	instr.auipc_set();
+			LUI: 	instr.lui_set(); 
 		endcase
     end
 
@@ -54,84 +54,5 @@ module CPU (
 	imem im2_ins(instr.imem_io_ports);
 	dmem d1_ins (instr.dmem_io_ports);
 	regfile r1  (instr.regfile_io_ports);
-
-
-	// Functions
-	// function void automoatic r_set(ref Instr_IO instr);
-	// 	instr.wer 		= 1;
-	// 	instr.we 		= 4'b0;
-	// 	instr.regdata 	= instr.regdata_R;
-	// 	instr.pc 		= instr.iaddr+4;
-	// 	return;
-	// endfunction	
-
-	// function void i_set;
-	// 	instr.imm 		= {{20{instr.idata[31]}},instr.idata[31:20]};
-	// 	instr.wer		= 1;
-	// 	instr.we		= 4'b0;
-	// 	instr.regdata 	= instr.regdata_I;
-	// 	instr.pc 		= instr.iaddr+4;
-	// endfunction	
-
-	// function void l_set;
-	// 	instr.imm 		= {{20{instr.idata[31]}},instr.idata[31:20]};
-	// 	instr.wer		= 1;
-	// 	instr.we		= 4'b0;
-	// 	instr.daddr 	= instr.rv1+instr.imm;    
-	// 	instr.regdata 	= instr.regdata_L;
-	// 	instr.pc 		= instr.iaddr+4;
-	// endfunction	
-
-	// function void s_set;
-	// 	instr.imm 		= {{20{instr.idata[31]}},instr.idata[31:25],instr.idata[11:7]};
-	// 	instr.wer		= 0;
-	// 	instr.daddr 	= instr.rv1+instr.imm;
-	// 	instr.we 		= instr.we_S;
-	// 	instr.pc 		= instr.iaddr+4;
-	// 	case(instr.idata[14:12])
-	// 		3'b000: instr.dwdata = {instr.rv2[7:0],instr.rv2[7:0],instr.rv2[7:0],instr.rv2[7:0]};
-	// 		3'b001: instr.dwdata = {instr.rv2[15:0],instr.rv2[15:0]};
-	// 		3'b010: instr.dwdata = instr.rv2;
-	// 	endcase
-	// endfunction	
-
-	// function void b_set;
-	// 	instr.imm 		= {{20{instr.idata[31]}},instr.idata[31],instr.idata[7],instr.idata[30:25],instr.idata[11:8],1'b0};
-	// 	instr.wer		= 0;
-	// 	instr.we		= 4'b0;
-	// 	instr.pc 		= instr.iaddr_val;
-	// endfunction	
-
-	// function void jalr_set;
-	// 	instr.imm 		= {{20{instr.idata[31]}},instr.idata[31:20]};
-	// 	instr.wer 		= 1;
-	// 	instr.we 		= 4'b0;
-	// 	instr.regdata 	= instr.iaddr+4;
-	// 	instr.pc 		= (instr.rv1+instr.imm) & 32'hfffffffe;
-	// endfunction
-
-	// function void jal_set;
-	// 	instr.imm 		= {{11{instr.idata[31]}},instr.idata[31],instr.idata[19:12],instr.idata[20],instr.idata[30:21],1'b0};
-	// 	instr.pc 		= (instr.iaddr+instr.imm);
-	// 	instr.wer 		= 1;
-	// 	instr.we 		= 4'b0;
-	// 	instr.regdata 	= instr.iaddr+4;
-	// endfunction
-
-	// function void auipc_set;
-	// 	instr.imm 		= {instr.idata[31:12],12'b0};
-	// 	instr.wer 		= 1;
-	// 	instr.we 		= 4'b0;
-	// 	instr.regdata 	= instr.iaddr+instr.imm;
-	// 	instr.pc 		= instr.iaddr+4;
-	// endfunction
-
-	// function void lui_set;
-	// 	instr.imm 		= {instr.idata[31:12],12'b0};
-	// 	instr.wer		= 1;
-	// 	instr.we		= 4'b0;
-	// 	instr.regdata 	= instr.imm;
-	// 	instr.pc 		= instr.iaddr+4;
-	// endfunction
 
 endmodule
