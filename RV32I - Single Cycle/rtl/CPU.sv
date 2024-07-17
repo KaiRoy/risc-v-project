@@ -58,7 +58,7 @@ module CPU (
 
 	// Functions
 	function void r_set(
-		inout Instr_IO_cpu_sig instr
+		inout Instr_IO_cpu_sig instr;
 		);
 		instr.wer 		= 1;
 		instr.we 		= 4'b0;
