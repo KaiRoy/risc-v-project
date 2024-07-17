@@ -13,7 +13,7 @@ import riscv_pkg::*;
 
 module R_type(Instr_IO.R_type_io_ports bus);	
 	logic [4:0] instr;
-	logic signed [31:0] rs1,rs, rd;
+	logic signed [31:0] rs1, rs2, rd;
     logic [31:0] u_rs1, u_rs2;
 	
 	//input
