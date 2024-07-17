@@ -32,7 +32,7 @@ interface  Instr_IO (
 		wer = 1;
 		we = 4'b0;
 		regdata = regdata_R;
-		pc = addr+4;
+		pc = iaddr+4;
 	endfunction
 
 	modport R_type_io_ports (input idata, input rv1, input rv2, output regdata_R); 
