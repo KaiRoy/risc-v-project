@@ -1,6 +1,6 @@
 
 `timescale 1ns / 1ns
-module cpu_tb;
+module tb;
 logic clk;
 logic reset;
 logic [31:0] iaddr;  
