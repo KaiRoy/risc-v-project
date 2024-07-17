@@ -42,7 +42,7 @@ module I_type(Instr_IO.I_type_io_ports bus);
 				if (bus.idata[30])	 //srli || srai
 					rd = (rs1>>imm[4:0]);
 				else	
-					rd = (rs1>>>imm[4:0]);
+					rd = (rs1>>>imm[4:0]);		//The 3 MSB are resulting in 000 and I do not know why
 			end
 		    default: ;
 		endcase

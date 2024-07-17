@@ -61,8 +61,8 @@ module tb;
 		#10 //ADDI
 		display_b_txt("Test 1: ADDI");
 		$cast({idata[14:12]}, ADDI);
-		rv1=32'd617;
-		imm=32'd511;
+		rv1=2147483648;
+		imm=3;
 		#1 display_state();
 		if (rd == (rv1 + imm))
 			display_pass("PASS");
