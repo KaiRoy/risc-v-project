@@ -38,7 +38,7 @@ module tb;
     assign bus.rv1 = rv1;
     assign bus.rv2 = rv2;
 
-    assign rd = bus.regdata_l;
+    assign rd = bus.regdata_L;
 
 	// Variables
     l_func func;
@@ -48,8 +48,8 @@ module tb;
 
 	// Display System
     function void display_state;
-        $display("Instruction: %0s\nimm = %h\trv1 = %d\trv2 = %d\nNext PC: %8h\n", 
-        func.name(), imm, rv1, rv2, iaddr_val);
+        $display("Instruction: %0s\naddr = %8h\tdata = %8h\trd = %8h\n", 
+        func.name(), daddr, drdata, rd);
     endfunction
     function void display_b_txt(string str);
         $display("\n%c[1;34m",27);
