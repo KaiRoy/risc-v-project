@@ -69,6 +69,7 @@ module tb;
         idata   = 0;
         rv1     = 0;
         rv2     = 0;
+		rd 		= 0;
     end
 
     // Initial block for stimulus
@@ -108,7 +109,7 @@ module tb;
         #1; // Wait for a moment
 
         // Display results
-        $display_state(); // Display results
+        display_state(); // Display results
 		// if (imm == iaddr_val)
 		// 	display_pass("PASS");
 		// else 
