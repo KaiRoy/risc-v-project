@@ -77,6 +77,6 @@ module tb;
 		#1;
 		display_state;
 
-		#5; $finsih;
+		#5; $finish;
 	end
 endmodule : tb
