@@ -64,7 +64,7 @@ module tb;
 		daddr = 1;
 		#1;
 		display_state;
-		if (we == 0010)
+		if (we == 'b0010)
 			display_pass("PASS");
 		else 
 			display_pass("FAIL");
@@ -74,7 +74,7 @@ module tb;
 		daddr = 0;
 		#1;
 		display_state;
-		if (we == 0011)
+		if (we == 'b0011)
 			display_pass("PASS");
 		else 
 			display_pass("FAIL");
@@ -84,7 +84,7 @@ module tb;
 		daddr = 1;
 		#1;
 		display_state;
-		if (we == 1111)
+		if (we == 'b1111)
 			display_pass("PASS");
 		else 
 			display_pass("FAIL");
