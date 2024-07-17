@@ -23,6 +23,9 @@ module tb;
 	// Outputs
 	logic [3:0] we;
 
+	// Interface
+    Instr_IO bus(.*);
+
 	// Aliases
     assign bus.idata = idata;
     assign bus.iaddr = iaddr;
