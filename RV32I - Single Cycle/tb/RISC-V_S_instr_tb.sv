@@ -42,7 +42,7 @@ module tb;
 
 	// Display System
     function void display_state;
-        $display("Instruction: %0s\nwe = %d\n", 
+        $display("Instruction: %0s\nwe = %4b\n", 
         func.name(), we);
     endfunction
     function void display_b_txt(string str);
