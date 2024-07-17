@@ -69,7 +69,6 @@ module tb;
         idata   = 0;
         rv1     = 0;
         rv2     = 0;
-		rd 		= 0;
     end
 
     // Initial block for stimulus
