@@ -31,7 +31,7 @@ module tb;
     assign we = bus.we_S;
 
 	s_func func;
-	assign func = s_func'({bus.idata[30], bus.idata[25], bus.idata[14:12]})
+	assign func = s_func'({bus.idata[30], bus.idata[25], bus.idata[14:12]});
 
 
 	// Instantiate the module
