@@ -41,6 +41,9 @@ module I_type(Instr_IO.I_type_io_ports bus);
             SRLI: 	rd = bus.idata[30] ? rs1>>imm[4:0] : rs1>>>imm[4:0]; //srli || srai
 		    default: ;
 		endcase
+
+		if (func == SRLI)
+			$display("Internal = %32b\n", rd);
 	end
 
 endmodule : I_type
