@@ -150,7 +150,7 @@ module tb;
 		#10 //SRAI
 		display_b_txt("Test 9: SRAI");
 		$cast({idata[14:12]}, SRLI);
-		rv1= -949;
+		rv1= -5;
 		imm=32'd3;
 		idata[30] = 1;
 		#1 display_state();
