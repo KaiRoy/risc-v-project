@@ -2,8 +2,8 @@
 ** RISC-V_L_instr_tb.sv
 ** Author: Kai Roy, 
 ** Version: 1.0
-** Date: 7/13/2024
-** Description: Testbench for the RISC-V_B_instr.sv file (WIP)
+** Date: 7/17/2024
+** Description: Testbench for the RISC-V_B_instr.sv file
 ****************************************************/
 `timescale 1ns / 1ps
 import riscv_pkg::*;

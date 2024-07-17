@@ -1,8 +1,8 @@
 /****************************************************
-** RISC-V_B_instr_tb.sv
+** RISC-V_S_instr_tb.sv
 ** Author: Kai Roy, 
 ** Version: 1.0
-** Date: 7/13/2024
+** Date: 7/17/2024
 ** Description: Testbench for the RISC-V_B_instr.sv file (WIP)
 ****************************************************/
 `timescale 1ns / 1ps
@@ -58,24 +58,36 @@ module tb;
 
 	
 	// Stimulus Block
-	initial begin
+	initial begin			//!!! VERIFY WHAT THE OUTPUT SHOULD BE
 		#10; //SB
 		$cast({idata[30], idata[25], idata[14:12]}, SB);
 		daddr = 1;
 		#1;
 		display_state;
+		if (we == 0010)
+			display_pass("PASS");
+		else 
+			display_pass("FAIL");
 		
 		#10; //SH
 		$cast({idata[30], idata[25], idata[14:12]}, SH);
-		daddr = 1;
+		daddr = 0;
 		#1;
 		display_state;
+		if (we == 0011)
+			display_pass("PASS");
+		else 
+			display_pass("FAIL");
 		
 		#10; //SW
 		$cast({idata[30], idata[25], idata[14:12]}, SW);
 		daddr = 1;
 		#1;
 		display_state;
+		if (we == 1111)
+			display_pass("PASS");
+		else 
+			display_pass("FAIL");
 
 		#5; $finish;
 	end
