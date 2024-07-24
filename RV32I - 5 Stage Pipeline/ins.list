@@ -1,0 +1,5 @@
+./rtl/RISC-V_*
+./rtl/imem.sv
+./rtl/dmem.sv
+./rtl/regfile.sv
+./tb/tb_cpu.sv
