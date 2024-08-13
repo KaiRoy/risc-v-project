@@ -1,6 +1,13 @@
+/****************************************************
+** dmem.sv
+** Author: Kai Roy, 
+** Version: 1.0.0
+** Date: 8/13/2024
+** Description: This file defines the main interface 
+** for a pipelined RISC-V core. 
+****************************************************/
 // `timescale 1ns / 1ps
 `timescale 1ns / 1ns
-//DMEM module
     
 module dmem(Instr_IO dmem_if);
 	logic 			clk;

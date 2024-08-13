@@ -1,7 +1,7 @@
 /****************************************************
 ** RISC-V_package.sv
 ** Author: Kai Roy, 
-** Version: 1.0
+** Version: 1.0.0
 ** Date: 7/10/2024
 ** Description: Package file containing user-defined vars
 ** enums, structs, etc for the RISC-V Processor
@@ -16,8 +16,7 @@ package riscv_pkg;
         JALR  = 7'b1100111,
         JAL   = 7'b1101111,
         AUIPC = 7'b0010111,
-        LUI   = 7'b0110111,
-		NOP   = 7'b1111111			// Verify Opcode
+        LUI   = 7'b0110111
     } op_code;
 
 	typedef enum logic[2:0] {

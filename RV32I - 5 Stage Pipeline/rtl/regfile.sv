@@ -1,6 +1,13 @@
+/****************************************************
+** regfile.sv
+** Author: Kai Roy, 
+** Version: 1.0.0
+** Date: 8/13/2024
+** Description: This file defines the main interface 
+** for a pipelined RISC-V core. 
+****************************************************/
 // `timescale 1ns / 1ps
 `timescale 1ns / 1ns
-//Regfile module
 	
 module regfile(core_itf.regfile_id_ports ID_itf, coreitf.regfile_wb_ports WB_itf);
 	logic	[4:0] 	rs1, rs1, rd;
