@@ -16,7 +16,8 @@ package riscv_pkg;
         JALR  = 7'b1100111,
         JAL   = 7'b1101111,
         AUIPC = 7'b0010111,
-        LUI   = 7'b0110111
+        LUI   = 7'b0110111,
+		AMO	  = 7'b0101111
     } op_code;
 
 	typedef enum logic[2:0] {
@@ -78,5 +79,38 @@ package riscv_pkg;
         REM    = 5'b01110,
         REMU   = 5'b01111
     } m_func;
+
+	typedef enum logic [4:0] { //instr[30, 25, 14:12]
+        MUL    = 5'b01000,
+        MULH   = 5'b01001,
+        MULHSU = 5'b01010,
+        MULHU  = 5'b01011,
+        DIV    = 5'b01100,
+        DIVU   = 5'b01101,
+        REM    = 5'b01110,
+        REMU   = 5'b01111
+    } a_func;
+
+	typedef enum logic [4:0] { //instr[30, 25, 14:12]
+        MUL    = 5'b01000,
+        MULH   = 5'b01001,
+        MULHSU = 5'b01010,
+        MULHU  = 5'b01011,
+        DIV    = 5'b01100,
+        DIVU   = 5'b01101,
+        REM    = 5'b01110,
+        REMU   = 5'b01111
+    } f_func;
+
+	typedef enum logic [4:0] { //instr[30, 25, 14:12]
+        MUL    = 5'b01000,
+        MULH   = 5'b01001,
+        MULHSU = 5'b01010,
+        MULHU  = 5'b01011,
+        DIV    = 5'b01100,
+        DIVU   = 5'b01101,
+        REM    = 5'b01110,
+        REMU   = 5'b01111
+	} d_func;
 
 endpackage
