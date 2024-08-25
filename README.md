@@ -54,6 +54,13 @@ The main goal of the code refactor was to gain a thorough understanding of how e
 
 **Pipelining (wihtout Forwarding)**
 
+Tasks:
+- [X] Initial pipeline code structure
+- [ ] Modify testbench to work with the pipeline
+- [ ] Initial testing of the pipeline (ensure final results match the single cycle)
+- [ ] Further modify testbench for detailed pipeline output
+- [ ] Testing pipeline instruction flow, edge cases, etc.
+
 
 <!--
 **Synthesize Model**
