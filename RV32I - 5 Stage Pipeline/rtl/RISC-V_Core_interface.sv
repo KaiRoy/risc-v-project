@@ -17,7 +17,6 @@ interface  core_itf (
 	** Variables
 	*************************************************************************************************************/
 	// Flags
-	logic regDst;  // This Flag seems to be unnecessary as their is no distinction between rd and rt in this implementation
 
 	// Control Signals
 	logic 	[3:0] 	we;			// write enable signal for each byte of 32-b word
@@ -96,7 +95,6 @@ interface  core_itf (
 		we 		= 4'b0;
 		regdata	= regdata_R;
 		pc 		= iaddr+4;
-		regDst 	= 1;	// R Format
 	endfunction
 
 	function i_set;
@@ -105,7 +103,6 @@ interface  core_itf (
 		we		= 4'b0;
 		regdata = regdata_I;
 		pc 		= iaddr+4;
-		regDst 	= 0;	// I Format
 	endfunction
 
 	function l_set;
@@ -115,7 +112,6 @@ interface  core_itf (
 		daddr 	= rv1+imm;    
 		regdata = regdata_L;
 		pc 		= iaddr+4;
-		regDst 	= 0;	// I Format
 	endfunction
 
 	function s_set;
@@ -123,7 +119,6 @@ interface  core_itf (
 		daddr 	= rv1+imm;
 		we 		= we_S;
 		pc 		= iaddr+4;
-		regDst 	= 0;	//I Format
 		case(idata[14:12])
 			3'b000: dwdata = {rv2[7:0], rv2[7:0], rv2[7:0], rv2[7:0]};
 			3'b001: dwdata = {rv2[15:0], rv2[15:0]};
@@ -136,7 +131,6 @@ interface  core_itf (
 		wer		= 0;
 		we		= 4'b0;
 		pc 		= iaddr_val;
-		regDst 	= 1;	// ? Format !!!!!! Does it matter?
 	endfunction
 
 	function jalr_set;
@@ -145,7 +139,6 @@ interface  core_itf (
 		we 		= 4'b0;
 		regdata = iaddr+4;
 		pc 		= (rv1+imm) & 32'hfffffffe;
-		regDst 	= 1;	// ? Format !!!!!!	Does it matter?
 	endfunction
 
 	function jal_set;
@@ -154,7 +147,6 @@ interface  core_itf (
 		wer 	= 1;
 		we 		= 4'b0;
 		regdata = iaddr+4;
-		regDst 	= 1;	// ? Format !!!!!!	Does it matter?
 	endfunction
 
 	function auipc_set;
@@ -163,7 +155,6 @@ interface  core_itf (
 		we 		= 4'b0;
 		regdata = iaddr+imm;
 		pc 		= iaddr+4;
-		regDst 	= 1;	// ? Format !!!!!!	Does it matter?
 	endfunction
 
 	function lui_set;
@@ -172,7 +163,6 @@ interface  core_itf (
 		we		= 4'b0;
 		regdata = imm;
 		pc 		= instr.iaddr+4;
-		regDst 	= 1;	// ? Format !!!!!!
 	endfunction
 
 endinterface
