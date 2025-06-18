@@ -1,0 +1,8 @@
+[
+{
+  "directory": "H:/GitHub/risc-v-sc-project/C-Models/RISC-V-Single-Cycle/build",
+  "command": "C:\\PROGRA~1\\mingw64\\bin\\C__~1.EXE   -g -o CMakeFiles\\RISC-V-Single-Cycle.dir\\src\\main.cpp.obj -c H:\\GitHub\\risc-v-sc-project\\C-Models\\RISC-V-Single-Cycle\\src\\main.cpp",
+  "file": "H:/GitHub/risc-v-sc-project/C-Models/RISC-V-Single-Cycle/src/main.cpp",
+  "output": "CMakeFiles/RISC-V-Single-Cycle.dir/src/main.cpp.obj"
+}
+]

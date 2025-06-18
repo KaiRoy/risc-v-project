@@ -1,0 +1,7 @@
+{
+	"InstallScripts" : 
+	[
+		"H:/GitHub/risc-v-sc-project/C-Models/RISC-V-Single-Cycle/build/cmake_install.cmake"
+	],
+	"Parallel" : false
+}
